@@ -248,6 +248,52 @@ backgroundColor:"#ea4335"
 new Chart(
 
 document.getElementById(
+"movingChart"
+),
+
+{
+
+type:"line",
+
+data:{
+
+labels:months,
+
+datasets:[{
+
+label:"Moving Average",
+
+data:[
+
+220000,
+222000,
+225000,
+228000,
+230000,
+226000,
+224000,
+229000,
+227000,
+223000,
+221000
+
+],
+
+borderColor:"#8e24aa",
+
+fill:false,
+
+tension:.4
+
+}]
+
+}
+
+});
+
+new Chart(
+
+document.getElementById(
 "quarterChart"
 ),
 
