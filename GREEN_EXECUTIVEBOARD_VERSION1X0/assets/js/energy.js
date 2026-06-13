@@ -206,6 +206,48 @@ backgroundColor:
 new Chart(
 
 document.getElementById(
+"peakChart"
+),
+
+{
+
+type:"bar",
+
+data:{
+
+labels:[
+
+"Jun25",
+"Jul25",
+"Aug25",
+"Sep25"
+
+],
+
+datasets:[{
+
+label:"Peak Demand",
+
+data:[
+
+168400,
+208080,
+299140,
+226520
+
+],
+
+backgroundColor:"#ea4335"
+
+}]
+
+}
+
+});
+
+new Chart(
+
+document.getElementById(
 "quarterChart"
 ),
 
