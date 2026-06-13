@@ -380,6 +380,47 @@ data:[
 new Chart(
 
 document.getElementById(
+"scoreChart"
+),
+
+{
+
+type:"doughnut",
+
+data:{
+
+labels:[
+
+"Achieved",
+"Remaining"
+
+],
+
+datasets:[{
+
+data:[
+
+80,
+20
+
+],
+
+backgroundColor:[
+
+"#34a853",
+"#eeeeee"
+
+]
+
+}]
+
+}
+
+});
+
+new Chart(
+
+document.getElementById(
 "quarterChart"
 ),
 
