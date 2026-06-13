@@ -2,6 +2,16 @@
 // ENERGY_USAGE_MODULE_1X0
 // ==========================================
 
+// ==========================================
+// ROLE ACCESS
+// ==========================================
+
+const role =
+
+localStorage.getItem(
+"role"
+);
+
 // Monthly Labels
 const months=[
 "Jan25",
@@ -751,6 +761,15 @@ tableBody.innerHTML +=
 
 <tr>
 
+<td>
+
+<input
+type="checkbox"
+class="rowCheck"
+value="${index}">
+
+</td>
+
 <td>${row.month}</td>
 
 <td>${row.kwh.toLocaleString()}</td>
@@ -765,6 +784,17 @@ ${(row.cost/row.kwh).toFixed(2)}
 
 <td>
 
+${
+role==="viewer"
+
+?
+
+"View Only"
+
+:
+
+`
+
 <button
 onclick="editRow(${index})">
 
@@ -778,6 +808,10 @@ onclick="deleteRow(${index})">
 Delete
 
 </button>
+
+`
+
+}
 
 </td>
 
@@ -824,6 +858,22 @@ function deleteRow(index){
 
 if(
 
+role==="viewer"
+
+){
+
+alert(
+
+"Viewer does not have permission."
+
+);
+
+return;
+
+}
+
+if(
+
 confirm(
 "Delete record?"
 )
@@ -843,9 +893,292 @@ loadTable();
 
 function editRow(index){
 
+if(
+
+role==="viewer"
+
+){
+
 alert(
 
-"Edit function V2 coming next."
+"Viewer does not have permission."
+
+);
+
+return;
+
+}
+
+let newKwh =
+
+prompt(
+
+"New Consumption (kWh)",
+
+energyData[index].kwh
+
+);
+
+
+let newCost =
+
+prompt(
+
+"New Cost (RM)",
+
+energyData[index].cost
+
+);
+
+
+if(
+
+newKwh!==null &&
+newCost!==null
+
+){
+
+energyData[index].kwh=
+
+parseFloat(
+newKwh
+);
+
+energyData[index].cost=
+
+parseFloat(
+newCost
+);
+
+loadTable();
+
+}
+
+}
+
+function addRecord(){
+
+if(
+
+role==="viewer"
+
+){
+
+alert(
+
+"Viewer does not have permission."
+
+);
+
+return;
+
+}
+
+let month=
+
+document
+.getElementById(
+"newMonth"
+)
+.value;
+
+
+let kwh=
+
+parseFloat(
+
+document
+.getElementById(
+"newKwh"
+)
+.value
+
+);
+
+
+let cost=
+
+parseFloat(
+
+document
+.getElementById(
+"newCost"
+)
+.value
+
+);
+
+
+if(
+
+month==="" ||
+
+isNaN(kwh) ||
+
+isNaN(cost)
+
+){
+
+alert(
+
+"Please complete all fields."
+
+);
+
+return;
+
+}
+
+
+energyData.push({
+
+month,
+
+kwh,
+
+cost
+
+});
+
+
+loadTable();
+
+
+
+document
+.getElementById(
+"newMonth"
+)
+.value="";
+
+document
+.getElementById(
+"newKwh"
+)
+.value="";
+
+document
+.getElementById(
+"newCost"
+)
+.value="";
+
+}
+
+function sortMonth(){
+
+energyData.sort((a,b)=>
+
+a.month.localeCompare(b.month)
+
+);
+
+currentPage=1;
+
+loadTable();
+
+}
+
+function sortKwh(){
+
+energyData.sort((a,b)=>
+
+b.kwh-a.kwh
+
+);
+
+currentPage=1;
+
+loadTable();
+
+}
+
+function sortCost(){
+
+energyData.sort((a,b)=>
+
+b.cost-a.cost
+
+);
+
+currentPage=1;
+
+loadTable();
+
+}
+
+function exportSelected(){
+
+let selected=[];
+
+document
+
+.querySelectorAll(
+
+".rowCheck:checked"
+
+)
+
+.forEach(
+
+checkbox=>{
+
+selected.push(
+
+energyData[
+checkbox.value
+]
+
+);
+
+});
+
+if(
+
+selected.length===0
+
+){
+
+alert(
+
+"No records selected."
+
+);
+
+return;
+
+}
+
+
+let worksheet=
+
+XLSX.utils.json_to_sheet(
+
+selected
+
+);
+
+
+let workbook=
+
+XLSX.utils.book_new();
+
+XLSX.utils.book_append_sheet(
+
+workbook,
+
+worksheet,
+
+"Selected Rows"
+
+);
+
+
+XLSX.writeFile(
+
+workbook,
+
+"selected_energy_records.xlsx"
 
 );
 
@@ -1112,3 +1445,20 @@ link.click();
 );
 
 });
+if(
+
+role==="viewer"
+
+){
+
+document
+
+.getElementById(
+"addBtn"
+)
+
+.style.display=
+
+"none";
+
+}

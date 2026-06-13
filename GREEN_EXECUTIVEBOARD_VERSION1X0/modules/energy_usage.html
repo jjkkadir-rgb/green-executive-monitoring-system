@@ -314,33 +314,6 @@ Monthly kWh and Cost Comparison
 <div class="chart-card">
 
 <h2>
-📄 Export Data
-</h2>
-
-<br>
-
-<button id="excelBtn">
-Export Excel
-</button>
-
-<button id="csvBtn">
-Export CSV
-</button>
-
-<button id="pdfBtn">
-Export PDF
-</button>
-
-<button id="pngBtn">
-Export PNG
-</button>
-
-</div>
-
-
-<div class="chart-card">
-
-<h2>
 🤖 AI Executive Analysis V2
 </h2>
 
@@ -406,6 +379,38 @@ Export PNG
 
 
 
+<div class="chart-card">
+
+<h2>
+➕ Add New Energy Record
+</h2>
+
+<input
+type="text"
+id="newMonth"
+placeholder="Month">
+
+<input
+type="number"
+id="newKwh"
+placeholder="Consumption (kWh)">
+
+<input
+type="number"
+id="newCost"
+placeholder="Cost (RM)">
+
+<button
+onclick="addRecord()">
+
+Save Record
+
+</button>
+
+</div>
+
+
+
 <div class="table-container">
 
 <h2>
@@ -443,11 +448,19 @@ placeholder="Search records...">
 
 <tr>
 
-<th>Month</th>
+<th>Select</th>
 
-<th>Consumption (kWh)</th>
+<th onclick="sortMonth()">
+Month ▲▼
+</th>
 
-<th>Cost (RM)</th>
+<th onclick="sortKwh()">
+Consumption ▲▼
+</th>
+
+<th onclick="sortCost()">
+Cost ▲▼
+</th>
 
 <th>Cost/kWh</th>
 
@@ -482,6 +495,39 @@ Page 1
 <button id="nextBtn">
 
 Next
+
+</button>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+📄 Export Data
+</h2>
+
+<br>
+
+<button id="excelBtn">
+Export Excel
+</button>
+
+<button id="csvBtn">
+Export CSV
+</button>
+
+<button id="pdfBtn">
+Export PDF
+</button>
+
+<button id="pngBtn">
+Export PNG
+</button>
+
+<button
+onclick="exportSelected()">
+
+📄 Export Selected
 
 </button>
 

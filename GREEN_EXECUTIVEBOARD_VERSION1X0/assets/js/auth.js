@@ -24,6 +24,7 @@ password==="Super@123"
 
 ){
 
+// Super Admin
 localStorage.setItem(
 
 "role",
@@ -49,6 +50,7 @@ password==="Admin@123"
 
 ){
 
+// Admin
 localStorage.setItem(
 
 "role",
@@ -74,6 +76,7 @@ password==="Viewer@123"
 
 ){
 
+// Viewer
 localStorage.setItem(
 
 "role",

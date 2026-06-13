@@ -134,11 +134,16 @@ document.getElementById(
 `
 Current Sustainability Score:
 
-80 / 100
+80 / 100 (GOOD)
 
-Status:
-
-GOOD
+The score is derived from a weighted assessment
+of energy performance (30%), water performance
+(20%), environmental performance (20%),
+energy management performance (20%), and
+ESG initiatives (10%). The current result
+indicates satisfactory sustainability
+performance with opportunities for
+continuous improvement.
 `;
 
 document
