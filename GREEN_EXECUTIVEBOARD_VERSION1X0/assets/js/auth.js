@@ -33,9 +33,9 @@ localStorage.setItem(
 
 );
 
-window.location=
+	window.location=
 
-"modules/dashboard.html";
+"/green-executive-monitoring-system/GREEN_EXECUTIVEBOARD_VERSION1X0/modules/dashboard.html";
 
 }
 
@@ -59,9 +59,9 @@ localStorage.setItem(
 
 );
 
-window.location=
+	window.location=
 
-"modules/dashboard.html";
+"/green-executive-monitoring-system/GREEN_EXECUTIVEBOARD_VERSION1X0/modules/dashboard.html";
 
 }
 
@@ -85,9 +85,9 @@ localStorage.setItem(
 
 );
 
-window.location=
+	window.location=
 
-"modules/dashboard.html";
+"/green-executive-monitoring-system/GREEN_EXECUTIVEBOARD_VERSION1X0/modules/dashboard.html";
 
 }
 
