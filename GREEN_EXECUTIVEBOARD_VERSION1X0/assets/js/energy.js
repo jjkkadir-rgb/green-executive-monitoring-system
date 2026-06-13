@@ -18,6 +18,21 @@ const months=[
 "Mar26"
 ];
 
+const fullMonths=[
+"Jan 2025",
+"Feb 2025",
+"Mar 2025",
+"Apr 2025",
+"May 2025",
+"Jun 2025",
+"Jul 2025",
+"Aug 2025",
+"Sep 2025",
+"Jan 2026",
+"Feb 2026",
+"Mar 2026"
+];
+
 // Consumption Data (kWh)
 const kwh=[
 217050,
@@ -162,7 +177,7 @@ backgroundColor:
 // ==========================================
 (function(){
   try{
-    const zipped = months.map((m,i)=>({month:m, kwh: kwh[i]||0}));
+    const zipped = months.map((m,i)=>({month:fullMonths[i]||m, kwh: kwh[i]||0}));
     const top5 = zipped.sort((a,b)=>b.kwh - a.kwh).slice(0,5);
     const topLabels = top5.map(r=>r.month);
     const topValues = top5.map(r=>r.kwh);
