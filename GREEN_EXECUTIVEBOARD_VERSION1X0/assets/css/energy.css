@@ -68,6 +68,15 @@
 
 }
 
+/* Full width sections (span entire content area) */
+.chart-card.full,
+.table-container.full{
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none;
+    margin-top:40px;
+}
+
 
 .kpi-card h3{
 
@@ -198,5 +207,109 @@ dd{
 tr:hover{
 
     background:#f5f7fa;
+
+}
+
+/* ==========================
+    KPI Card Colors
+========================== */
+
+.energy{
+
+border-left:8px solid #1a73e8;
+
+}
+
+.cost{
+
+border-left:8px solid #34a853;
+
+}
+
+.highest{
+
+border-left:8px solid #ea4335;
+
+}
+
+.lowest{
+
+border-left:8px solid #00acc1;
+
+}
+
+.average{
+
+border-left:8px solid #8e24aa;
+
+}
+
+.unitcost{
+
+border-left:8px solid #fbbc05;
+
+}
+
+
+/* ==========================
+    Card Text
+========================== */
+
+.kpi-card h1{
+
+font-size:32px;
+
+margin-top:15px;
+
+margin-bottom:15px;
+
+}
+
+
+.kpi-card p{
+
+color:#777;
+
+}
+
+
+.positive{
+
+color:#34a853;
+
+font-weight:bold;
+
+}
+
+
+.negative{
+
+color:#ea4335;
+
+font-weight:bold;
+
+}
+
+
+/* ==========================
+    Hover Effect
+========================== */
+
+.kpi-card{
+
+transition:.3s;
+
+}
+
+
+.kpi-card:hover{
+
+transform:
+
+translateY(-5px);
+
+box-shadow:
+
+0 8px 20px rgba(0,0,0,.15);
 
 }
