@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+WATER_USAGE
+</title>
+
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/energy.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/dashboard_button.css">
+    <script src="../assets/js/auth-guard.js"></script>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="sidebar">
+
+<a class="sidebar-logo" href="dashboard.html"><img src="../assets/images/green_system_logo.svg" alt="GREEN EXECUTIVE MONITORING SYSTEM"></a>
+
+<ul>
+
+<li>
+<a href="dashboard.html">
+<i class="fas fa-home"></i>
+Dashboard
+</a>
+</li>
+
+<li>
+<a href="energy_usage.html">
+<i class="fas fa-bolt"></i>
+Energy Usage
+</a>
+</li>
+
+<li>
+<a href="water_usage.html">
+<i class="fas fa-droplet"></i>
+Water Usage
+</a>
+</li>
+
+<li>
+<a href="analytics.html">
+<i class="fas fa-chart-line"></i>
+Analytics
+</a>
+</li>
+
+<li>
+<a href="ai_analysis.html">
+<i class="fas fa-robot"></i>
+AI Analysis
+</a>
+</li>
+
+<li>
+<a href="reports.html">
+<i class="fas fa-file"></i>
+Reports
+</a>
+</li>
+
+<li>
+<a href="settings.html">
+<i class="fas fa-gear"></i>
+Settings
+</a>
+</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<h1>
+💧 WATER_USAGE
+</h1>
+    <a class="dashboard-back" href="dashboard.html"><i class="fas fa-chevron-left"></i>Back to Dashboard</a>
+
+<div class="kpi-grid">
+
+<div class="kpi-card energy">
+
+<h3>
+💧 Total Consumption
+</h3>
+
+<h1>
+76,188 m³
+</h1>
+
+<p class="positive">▲ +1.8%</p>
+
+</div>
+
+<div class="kpi-card cost">
+
+<h3>💰 Total Cost</h3>
+
+<h1>RM457,422</h1>
+
+<p class="negative">▼ -0.5%</p>
+
+</div>
+
+<div class="kpi-card highest">
+
+<h3>🔥 Highest Month</h3>
+
+<h1>Nov 2025</h1>
+
+<p>12,903 m³</p>
+
+</div>
+
+<div class="kpi-card lowest">
+
+<h3>❄ Lowest Month</h3>
+
+<h1>Jan 2026</h1>
+
+<p>4,714 m³</p>
+
+</div>
+
+<div class="kpi-card average">
+
+<h3>📊 Average Monthly</h3>
+
+<h1>10,884 m³</h1>
+
+<p>Monthly Average</p>
+
+</div>
+
+<div class="kpi-card unitcost">
+
+<h3>💵 Average Cost/m³</h3>
+
+<h1>RM5.99</h1>
+
+<p>Cost Efficiency</p>
+
+</div>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+Monthly Consumption Trend
+</h2>
+
+<canvas id="monthlyChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+Monthly Cost Trend
+</h2>
+
+<canvas id="costChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+Consumption vs Cost
+</h2>
+
+<canvas id="comparisonChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+Top 5 Highest Months
+</h2>
+
+<canvas id="topChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+Quarterly Analysis
+</h2>
+
+<canvas id="quarterChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+Monthly m³ and Cost Comparison
+</h2>
+
+<canvas id="yearChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+💧 Peak Consumption Analysis
+</h2>
+
+<canvas id="peakChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+📈 Moving Average Trend
+</h2>
+
+<canvas id="movingChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+💰 Monthly Cost Efficiency
+</h2>
+
+<canvas id="efficiencyChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+🔥 Annual Performance Index
+</h2>
+
+<canvas id="performanceChart"></canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+🌿 Utility Performance Score
+</h2>
+
+<canvas id="scoreChart"></canvas>
+
+</div>
+
+<div class="chart-card full">
+
+<h2>
+🤖 AI Executive Analysis V2
+</h2>
+
+<div class="ai-card">
+
+<h3>
+📋 Executive Summary
+</h3>
+
+<p id="executiveSummary"></p>
+
+<hr>
+
+<h3>
+📈 Performance Indicator
+</h3>
+
+<p id="performanceIndicator"></p>
+
+<hr>
+
+<h3>
+📊 Trend Analysis
+</h3>
+
+<p id="trendAnalysis"></p>
+
+<hr>
+
+<h3>
+💰 Cost Efficiency
+</h3>
+
+<p id="costEfficiency"></p>
+
+<hr>
+
+<h3>
+🌍 Carbon Estimation
+</h3>
+
+<p id="carbonEstimate"></p>
+
+<hr>
+
+<h3>
+🔮 Forecast
+</h3>
+
+<p id="forecast"></p>
+
+<hr>
+
+<h3>
+✅ Recommendations
+</h3>
+
+<p id="recommendation"></p>
+
+</div>
+
+</div>
+
+<div class="chart-card" id="waterAddSection">
+
+<div class="section-header compact">
+    <h2>➕ Add New Water Record</h2>
+    <button class="btn btn-primary" onclick="addRecord()">Save Record</button>
+</div>
+
+<div class="form-grid">
+    <input type="text" id="newMonth" placeholder="Month">
+    <input type="number" id="newConsumption" placeholder="Consumption (m³)">
+    <input type="number" id="newCost" placeholder="Cost (RM)">
+</div>
+
+</div>
+
+<div class="table-container">
+
+<div class="section-header">
+    <h2>📋 Water Consumption Records</h2>
+    <div class="table-actions">
+        <input type="text" id="searchInput" placeholder="Search records...">
+        <div class="action-group">
+            <select id="rowsPerPage">
+                <option value="5">5 Rows</option>
+                <option value="10" selected>10 Rows</option>
+                <option value="20">20 Rows</option>
+            </select>
+            <button class="btn btn-secondary" id="waterAddBtn">➕ Add Record</button>
+        </div>
+    </div>
+</div>
+
+<table id="waterTable">
+
+<thead>
+
+<tr>
+
+<th>Select</th>
+
+<th onclick="sortMonth()">Month ▲▼</th>
+
+<th onclick="sortConsumption()">Consumption ▲▼</th>
+
+<th onclick="sortCost()">Cost ▲▼</th>
+
+<th>Cost/m³</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+
+<br>
+
+<div class="pagination">
+
+<button id="prevBtn">Previous</button>
+
+<span id="pageInfo">Page 1</span>
+
+<button id="nextBtn">Next</button>
+
+</div>
+
+</div>
+
+<div class="chart-card">
+
+<div class="section-header compact">
+    <h2>📄 Export Data</h2>
+    <button class="btn btn-primary" onclick="exportSelected()">Export Selected</button>
+</div>
+
+<div class="export-grid">
+    <button class="btn btn-secondary" id="excelBtn">Excel</button>
+    <button class="btn btn-secondary" id="csvBtn">CSV</button>
+    <button class="btn btn-secondary" id="pdfBtn">PDF</button>
+    <button class="btn btn-secondary" id="pngBtn">PNG</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="../assets/js/water.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+</body>
+
+</html>

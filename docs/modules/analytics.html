@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ANALYTICS</title>
+
+<link rel="stylesheet"
+href="../assets/css/style.css">
+
+<link rel="stylesheet"
+href="../assets/css/analytics.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="../assets/css/dashboard_button.css">
+</head>
+
+<body>
+
+<div class="main">
+
+<h1>
+📈 ANALYTICS
+</h1>
+    <a class="dashboard-back" href="dashboard.html"><i class="fas fa-chevron-left"></i>Back to Dashboard</a>
+
+<div class="kpi-grid">
+
+<div class="kpi-card">
+
+<h3>
+⚡ Total Energy Consumption
+</h3>
+
+<h1>
+2.71 M kWh
+</h1>
+
+</div>
+
+
+<div class="kpi-card">
+
+<h3>
+💧 Total Water Consumption
+</h3>
+
+<h1>
+76,188 m³
+</h1>
+
+</div>
+
+
+<div class="kpi-card">
+
+<h3>
+💰 Total Utility Cost
+</h3>
+
+<h1>
+RM2.09 M
+</h1>
+
+</div>
+
+
+<div class="kpi-card">
+
+<h3>
+🔥 Highest Cost Utility
+</h3>
+
+<h1>
+Electricity
+</h1>
+
+</div>
+
+
+<div class="kpi-card">
+
+<h3>
+🌿 Sustainability Score
+</h3>
+
+<h1>
+80%
+</h1>
+
+</div>
+
+</div>
+
+
+<div class="chart-card">
+
+<h2>
+Utility Cost Comparison
+</h2>
+
+<canvas id="utilityChart">
+
+</canvas>
+
+</div>
+
+
+<div class="chart-card">
+
+<h2>
+Utility Cost Distribution
+</h2>
+
+<canvas id="pieChart">
+
+</canvas>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+🤖 AI Analytics Panel
+</h2>
+
+<div class="ai-card">
+
+<h3>
+Executive Summary
+</h3>
+
+<p id="executiveSummary"></p>
+
+<hr>
+
+<h3>
+Trend Analysis
+</h3>
+
+<p id="trendAnalysis"></p>
+
+<hr>
+
+<h3>
+Recommendations
+</h3>
+
+<p id="recommendation"></p>
+
+<hr>
+
+<h3>
+Forecast
+</h3>
+
+<p id="forecast"></p>
+
+<hr>
+
+<h3>
+Sustainability Score
+</h3>
+
+<p id="score"></p>
+
+</div>
+
+</div>
+
+<div class="table-container">
+
+<h2>
+📋 Combined Utility Summary
+</h2>
+
+<br>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Utility</th>
+
+<th>Consumption</th>
+
+<th>Total Cost (RM)</th>
+
+<th>Contribution (%)</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>
+⚡ Electricity
+</td>
+
+<td>
+2.71 Million kWh
+</td>
+
+<td>
+1,630,000
+</td>
+
+<td>
+78%
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+💧 Water
+</td>
+
+<td>
+76,188 m³
+</td>
+
+<td>
+457,422
+</td>
+
+<td>
+22%
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="chart-card">
+
+<h2>
+📄 Export Analytics Report
+</h2>
+
+<br>
+
+<button id="excelBtn">
+
+Export Excel
+
+</button>
+
+<button id="csvBtn">
+
+Export CSV
+
+</button>
+
+<button id="pdfBtn">
+
+Export PDF
+
+</button>
+
+<button id="pngBtn">
+
+Export PNG
+
+</button>
+
+</div>
+
+<script src="../assets/js/analytics.js">
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+/* Dashboard button shared style */
+.dashboard-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 20px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #1a3fc2 0%, #2e6add 100%);
+    color: #ffffff;
+    font-size: 0.98rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 12px 30px rgba(26, 115, 232, 0.2);
+    border: 1px solid rgba(255,255,255,0.22);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, opacity 0.22s ease;
+}
+.dashboard-back:hover,
+.dashboard-back:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 36px rgba(26, 115, 232, 0.25);
+    opacity: 0.97;
+}
+.dashboard-back:focus {
+    outline: 3px solid rgba(26, 115, 232, 0.3);
+    outline-offset: 2px;
+}
+.dashboard-back i {
+    font-size: 1.05rem;
+}
