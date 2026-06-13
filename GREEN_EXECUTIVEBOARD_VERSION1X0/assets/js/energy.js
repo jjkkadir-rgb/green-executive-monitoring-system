@@ -836,6 +836,27 @@ Page ${currentPage}
 
 loadTable();
 
+function hideViewerAddControls() {
+  if (role === "viewer") {
+    const energyAddSection = document.getElementById("energyAddSection");
+    const energyAddBtn = document.getElementById("energyAddBtn");
+    if (energyAddSection) {
+      energyAddSection.style.display = "none";
+    }
+    if (energyAddBtn) {
+      energyAddBtn.style.display = "none";
+    }
+    const addRecordButtons = document.querySelectorAll("button[onclick='addRecord()'], button[onclick=\"addRecord()\"]");
+    addRecordButtons.forEach(btn => {
+      if (!btn.closest("#energyAddSection")) {
+        btn.style.display = "none";
+      }
+    });
+  }
+}
+
+hideViewerAddControls();
+
 document
 
 .getElementById(

@@ -24,6 +24,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="../assets/css/dashboard_button.css">
+    <script src="../assets/js/auth-guard.js"></script>
 </head>
 
 <body>
@@ -379,7 +380,7 @@ Monthly kWh and Cost Comparison
 
 
 
-<div class="chart-card">
+<div class="chart-card" id="energyAddSection">
 
 <h2>
 ➕ Add New Energy Record
@@ -434,7 +435,7 @@ placeholder="Search records...">
 
 </select>
 
-<button id="addBtn">
+<button id="energyAddBtn">
 
 ➕ Add Record
 

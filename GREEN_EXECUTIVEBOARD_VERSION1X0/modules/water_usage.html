@@ -17,6 +17,7 @@ WATER_USAGE
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="../assets/css/dashboard_button.css">
+    <script src="../assets/js/auth-guard.js"></script>
 </head>
 
 <body>
@@ -333,7 +334,7 @@ Monthly m³ and Cost Comparison
 
 </div>
 
-<div class="chart-card">
+<div class="chart-card" id="waterAddSection">
 
 <div class="section-header compact">
     <h2>➕ Add New Water Record</h2>
@@ -360,7 +361,7 @@ Monthly m³ and Cost Comparison
                 <option value="10" selected>10 Rows</option>
                 <option value="20">20 Rows</option>
             </select>
-            <button class="btn btn-secondary" id="addBtn">➕ Add Record</button>
+            <button class="btn btn-secondary" id="waterAddBtn">➕ Add Record</button>
         </div>
     </div>
 </div>

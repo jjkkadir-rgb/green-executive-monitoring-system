@@ -774,6 +774,27 @@ Page ${currentPage}
 
 loadTable();
 
+function hideViewerAddControls() {
+  if (role === "viewer") {
+    const waterAddSection = document.getElementById("waterAddSection");
+    const waterAddBtn = document.getElementById("waterAddBtn");
+    if (waterAddSection) {
+      waterAddSection.style.display = "none";
+    }
+    if (waterAddBtn) {
+      waterAddBtn.style.display = "none";
+    }
+    const addRecordButtons = document.querySelectorAll("button[onclick='addRecord()'], button[onclick=\"addRecord()\"]");
+    addRecordButtons.forEach(btn => {
+      if (!btn.closest("#waterAddSection")) {
+        btn.style.display = "none";
+      }
+    });
+  }
+}
+
+hideViewerAddControls();
+
 document
 
 .getElementById(
