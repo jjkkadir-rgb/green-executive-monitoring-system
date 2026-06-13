@@ -48,6 +48,30 @@ Login
 
 <script src="GREEN_EXECUTIVEBOARD_VERSION1X0/assets/js/auth.js"></script>
 
+<script>
+function login(){
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+  var target = '/green-executive-monitoring-system/GREEN_EXECUTIVEBOARD_VERSION1X0/modules/dashboard.html';
+  if(username === 'superadmin' && password === 'Super@123'){
+    localStorage.setItem('role','superadmin');
+    window.location = target;
+    return;
+  }
+  if(username === 'admin' && password === 'Admin@123'){
+    localStorage.setItem('role','admin');
+    window.location = target;
+    return;
+  }
+  if(username === 'viewer' && password === 'Viewer@123'){
+    localStorage.setItem('role','viewer');
+    window.location = target;
+    return;
+  }
+  alert('Invalid username or password');
+}
+</script>
+
 </body>
 
 </html>
