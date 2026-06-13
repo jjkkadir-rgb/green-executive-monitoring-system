@@ -294,6 +294,50 @@ tension:.4
 new Chart(
 
 document.getElementById(
+"efficiencyChart"
+),
+
+{
+
+type:"line",
+
+data:{
+
+labels:months,
+
+datasets:[{
+
+label:"RM/kWh",
+
+data:[
+
+0.60,
+0.61,
+0.60,
+0.59,
+0.59,
+0.60,
+0.62,
+0.57,
+0.55,
+0.64,
+0.65
+
+],
+
+borderColor:"#34a853",
+
+fill:false
+
+}]
+
+}
+
+});
+
+new Chart(
+
+document.getElementById(
 "quarterChart"
 ),
 
