@@ -1,0 +1,19 @@
+[
+  {
+    "username":"superadmin",
+    "password":"Super@123",
+    "role":"superadmin"
+  },
+
+  {
+    "username":"admin",
+    "password":"Admin@123",
+    "role":"admin"
+  },
+
+  {
+    "username":"viewer",
+    "password":"Viewer@123",
+    "role":"viewer"
+  }
+]

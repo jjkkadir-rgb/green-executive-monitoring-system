@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Water Usage</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/water.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <h2>🌿 GREEN BOARD</h2>
+      <ul>
+        <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li><a href="energy_usage.html"><i class="fas fa-bolt"></i> Energy Usage</a></li>
+        <li><a href="water_usage.html"><i class="fas fa-droplet"></i> Water Usage</a></li>
+        <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+        <li><a href="ai_analysis.html"><i class="fas fa-robot"></i> AI Analysis</a></li>
+        <li><a href="reports.html"><i class="fas fa-file"></i> Reports</a></li>
+        <li><a href="settings.html"><i class="fas fa-gear"></i> Settings</a></li>
+      </ul>
+    </div>
+    <div class="main">
+      <h1>💧 WATER_USAGE_MODULE_1X0</h1>
+      <div class="chart-card">
+        <h2>Monthly Cost Trend</h2>
+        <canvas id="costChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2>Consumption vs Cost</h2>
+        <canvas id="comparisonChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2>Top 5 Highest Months</h2>
+        <canvas id="topChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2>Quarterly Analysis</h2>
+        <canvas id="quarterChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2>Year Comparison</h2>
+        <canvas id="yearChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h2>
+          🤖 AI Executive Analysis
+        </h2>
+        <div class="ai-card">
+          <h3>
+            Executive Summary
+          </h3>
+          <p id="executiveSummary"></p>
+          <hr>
+          <h3>
+            Trend Analysis
+          </h3>
+          <p id="trendAnalysis"></p>
+          <hr>
+          <h3>
+            Recommendations
+          </h3>
+          <p id="recommendation"></p>
+          <hr>
+          <h3>
+            Forecast
+          </h3>
+          <p id="forecast"></p>
+        </div>
+      </div>
+      <div class="table-container">
+        <h2>
+          📋 Water Consumption Records
+        </h2>
+        <br>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search month...">
+        <br><br>
+        <table id="waterTable">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th>Consumption (m³)</th>
+              <th>Cost (RM)</th>
+              <th>Cost/m³</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <div class="chart-card">
+        <h2>
+          📄 Export Water Data
+        </h2>
+        <br>
+        <button id="excelBtn">
+          Export Excel
+        </button>
+        <button id="csvBtn">
+          Export CSV
+        </button>
+        <button id="pdfBtn">
+          Export PDF
+        </button>
+        <button id="pngBtn">
+          Export PNG
+        </button>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/js/water.js"></script>
+</body>
+</html>

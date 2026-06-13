@@ -1,0 +1,651 @@
+// ==========================================
+// ENERGY_USAGE_MODULE_1X0
+// ==========================================
+
+// Monthly Labels
+const months=[
+"Jan25",
+"Feb25",
+"Mar25",
+"Apr25",
+"May25",
+"Jun25",
+"Jul25",
+"Aug25",
+"Sep25",
+"Jan26",
+"Feb26",
+"Mar26"
+];
+
+// Consumption Data (kWh)
+const kwh=[
+217050,
+225960,
+235870,
+266420,
+242200,
+168400,
+208080,
+299140,
+226520,
+194320,
+206930
+];
+
+// Cost Data (RM)
+const cost=[
+130849,
+137876,
+142057,
+158315,
+142865,
+100957,
+128770,
+169295,
+125260,
+125070,
+133709
+];
+
+// ==========================================
+// Monthly Consumption Trend
+// ==========================================
+
+new Chart(
+  document.getElementById("monthlyChart"),
+  {
+    type:'line',
+    data:{
+      labels:months,
+      datasets:[{
+        label:'Consumption (kWh)',
+        data:kwh,
+        borderColor:'#1a73e8',
+        backgroundColor:'rgba(26,115,232,.2)',
+        fill:true,
+        tension:.4
+      }]
+    },
+    options:{
+      responsive:true,
+      plugins:{
+        legend:{
+          display:true
+        }
+      }
+    }
+  }
+);
+
+new Chart(
+
+  document.getElementById(
+"costChart"
+),
+
+{
+
+type:"line",
+
+data:{
+
+labels:months,
+
+datasets:[{
+
+label:"Cost (RM)",
+
+data:cost,
+
+borderColor:"#34a853",
+
+backgroundColor:
+"rgba(52,168,83,.2)",
+
+fill:true,
+
+tension:.4
+
+}]
+
+}
+
+});
+
+new Chart(
+
+document.getElementById(
+"comparisonChart"
+),
+
+{
+
+type:"bar",
+
+data:{
+
+labels:months,
+
+datasets:[
+
+{
+
+label:"Consumption (kWh)",
+
+data:kwh,
+
+backgroundColor:
+"#1a73e8"
+
+},
+
+{
+
+label:"Cost (RM)",
+
+data:cost,
+
+backgroundColor:
+"#34a853"
+
+}
+
+]
+
+}
+
+});
+
+new Chart(
+
+document.getElementById(
+"quarterChart"
+),
+
+{
+
+type:"doughnut",
+
+data:{
+
+labels:[
+
+"Q1",
+"Q2",
+"Q3",
+"Q4"
+
+],
+
+datasets:[{
+
+data:[
+
+678880,
+677020,
+733740,
+401250
+
+]
+
+}]
+
+}
+
+});
+
+new Chart(
+
+document.getElementById(
+"yearChart"
+),
+
+{
+
+type:"bar",
+
+data:{
+
+labels:[
+
+"2025",
+"2026"
+
+],
+
+datasets:[{
+
+label:"Consumption",
+
+data:[
+
+1861640,
+401250
+
+],
+
+backgroundColor:[
+
+"#1a73e8",
+"#34a853"
+
+]
+
+}]
+
+}
+
+});
+// ==========================================
+// AI EXECUTIVE PANEL
+// ==========================================
+
+document.getElementById(
+"executiveSummary"
+).innerHTML=
+
+`
+Total electricity consumption exceeded
+2.71 million kWh with an estimated cost
+of RM1.63 million.
+
+August 2025 recorded the highest
+consumption while June 2025 showed
+the lowest demand.
+`;
+
+
+
+document.getElementById(
+"trendAnalysis"
+).innerHTML=
+
+`
+Overall electricity usage remained
+relatively stable.
+
+Peak demand occurred during the
+third quarter due to increased
+campus activities.
+`;
+
+
+
+document.getElementById(
+"recommendation"
+).innerHTML=
+
+`
+• Optimize air-conditioning schedules.
+
+• Promote energy-saving campaigns.
+
+• Upgrade lighting systems to LED.
+
+• Consider solar integration
+in Version 2X0.
+`;
+
+
+
+document.getElementById(
+"forecast"
+).innerHTML=
+
+`
+Projected monthly consumption is
+approximately 220,000 kWh.
+
+Expected monthly expenditure is
+around RM130,000.
+`;
+
+// ==========================================
+// ENERGY TABLE DATA
+// ==========================================
+
+let energyData=[
+
+{
+month:"Jan 2025",
+kwh:217050,
+cost:130849
+},
+
+{
+month:"Feb 2025",
+kwh:225960,
+cost:137876
+},
+
+{
+month:"Mar 2025",
+kwh:235870,
+cost:142057
+},
+
+{
+month:"Apr 2025",
+kwh:266420,
+cost:158315
+},
+
+{
+month:"May 2025",
+kwh:242200,
+cost:142865
+},
+
+{
+month:"Jun 2025",
+kwh:168400,
+cost:100957
+},
+
+{
+month:"Jul 2025",
+kwh:208080,
+cost:128770
+},
+
+{
+month:"Aug 2025",
+kwh:299140,
+cost:169295
+},
+
+{
+month:"Sep 2025",
+kwh:226520,
+cost:125260
+},
+
+{
+month:"Jan 2026",
+kwh:194320,
+cost:125070
+},
+
+{
+month:"Feb 2026",
+kwh:206930,
+cost:133709
+}
+
+];
+
+function loadTable(){
+
+let tableBody=
+document.querySelector(
+"#energyTable tbody"
+);
+
+tableBody.innerHTML="";
+
+energyData.forEach(
+
+(row,index)=>{
+
+tableBody.innerHTML+=`
+
+<tr>
+
+<td>${row.month}</td>
+
+<td>${row.kwh.toLocaleString()}</td>
+
+<td>${row.cost.toLocaleString()}</td>
+
+<td>
+${(row.cost/row.kwh).toFixed(3)}
+</td>
+
+<td>
+
+<button>Edit</button>
+
+<button>Delete</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+loadTable();
+
+document
+
+.getElementById(
+"searchInput"
+)
+
+.addEventListener(
+
+"keyup",
+
+function(){
+
+let keyword=
+this.value.toLowerCase();
+
+let rows=
+document.querySelectorAll(
+"#energyTable tbody tr"
+);
+
+rows.forEach(row=>{
+
+let text=
+row.innerText.toLowerCase();
+
+row.style.display=
+
+text.includes(keyword)
+
+?
+
+""
+
+:
+
+"none";
+
+});
+
+});
+
+document
+.getElementById(
+"excelBtn"
+)
+
+.addEventListener(
+
+"click",
+
+()=>{
+
+let worksheet=
+
+XLSX.utils.json_to_sheet(
+
+energyData
+
+);
+
+let workbook=
+
+XLSX.utils.book_new();
+
+XLSX.utils.book_append_sheet(
+
+workbook,
+
+worksheet,
+
+"Energy Data"
+
+);
+
+XLSX.writeFile(
+
+workbook,
+
+"energy_usage.xlsx"
+
+);
+
+});
+
+document
+.getElementById(
+"csvBtn"
+)
+
+.addEventListener(
+
+"click",
+
+()=>{
+
+let worksheet=
+
+XLSX.utils.json_to_sheet(
+energyData
+);
+
+let csv=
+
+XLSX.utils.sheet_to_csv(
+worksheet
+);
+
+let blob=
+
+new Blob(
+
+[csv],
+
+{
+
+type:
+"text/csv"
+
+}
+
+);
+
+let link=
+
+document.createElement(
+"a"
+);
+
+link.href=
+
+URL.createObjectURL(
+blob
+);
+
+link.download=
+
+"energy_usage.csv";
+
+link.click();
+
+});
+
+document
+.getElementById(
+"pdfBtn"
+)
+
+.addEventListener(
+
+"click",
+
+()=>{
+
+const {
+
+jsPDF
+
+}=window.jspdf;
+
+const doc=
+
+new jsPDF();
+
+doc.setFontSize(
+18
+);
+
+doc.text(
+
+"ENERGY_USAGE_MODULE_1X0",
+
+20,
+
+20
+
+);
+
+doc.save(
+
+"energy_report.pdf"
+
+);
+
+});
+
+document
+.getElementById(
+"pngBtn"
+)
+
+.addEventListener(
+
+"click",
+
+()=>{
+
+html2canvas(
+
+document.querySelector(
+".main"
+)
+
+)
+
+.then(
+
+canvas=>{
+
+let link=
+
+document.createElement(
+"a"
+);
+
+link.download=
+
+"energy_dashboard.png";
+
+link.href=
+
+canvas.toDataURL();
+
+link.click();
+
+}
+
+);
+
+});
