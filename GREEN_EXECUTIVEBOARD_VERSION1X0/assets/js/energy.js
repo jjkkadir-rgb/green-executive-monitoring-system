@@ -157,6 +157,37 @@ backgroundColor:
 
 });
 
+// ==========================================
+// Top 5 Highest Months (computed from months/kwh)
+// ==========================================
+(function(){
+  try{
+    const zipped = months.map((m,i)=>({month:m, kwh: kwh[i]||0}));
+    const top5 = zipped.sort((a,b)=>b.kwh - a.kwh).slice(0,5);
+    const topLabels = top5.map(r=>r.month);
+    const topValues = top5.map(r=>r.kwh);
+
+    new Chart(document.getElementById('topChart'), {
+      type: 'bar',
+      data: {
+        labels: topLabels,
+        datasets: [{
+          label: 'Consumption (kWh)',
+          data: topValues,
+          backgroundColor: '#ea4335'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+  }catch(e){
+    console.error('Failed to render topChart', e);
+  }
+})();
+
 new Chart(
 
 document.getElementById(
