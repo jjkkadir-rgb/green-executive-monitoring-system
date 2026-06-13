@@ -1,1 +1,32 @@
 /* Dashboard styles */
+
+.kpi-grid{
+	display:grid;
+	grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+	gap:18px;
+	margin-top:16px;
+}
+
+.kpi-card{
+	background:#fff;
+	padding:18px;
+	border-radius:12px;
+	box-shadow:0 6px 18px rgba(0,0,0,0.06);
+	text-align:center;
+}
+
+.kpi-card h3{
+	margin:0 0 8px 0;
+	font-size:14px;
+	color:#555;
+}
+
+.kpi-card h1{
+	margin:0;
+	font-size:20px;
+	color:#111;
+}
+
+@media (max-width:600px){
+	.kpi-card h1{font-size:18px}
+}
