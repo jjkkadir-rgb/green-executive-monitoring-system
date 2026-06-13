@@ -132,11 +132,19 @@
 
     border-radius:20px;
 
+    line-height:1.8;
+
     box-shadow:
 
     0 3px 10px rgba(0,0,0,.1);
 
-    line-height:1.8;
+}
+
+.ai-card h3{
+
+    color:#1a73e8;
+
+    margin-top:20px;
 
 }
 
@@ -207,6 +215,99 @@ dd{
 tr:hover{
 
     background:#f5f7fa;
+
+}
+
+
+#rowsPerPage,
+#searchInput,
+#addBtn{
+
+    display:inline-block;
+
+    margin-right:10px;
+
+    margin-top:10px;
+
+}
+
+#rowsPerPage{
+
+    padding:10px;
+
+    border-radius:10px;
+
+    border:1px solid #ccc;
+
+    background:#fff;
+
+}
+
+#addBtn{
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#1a73e8;
+
+    color:#fff;
+
+    cursor:pointer;
+
+}
+
+#addBtn:hover{
+
+    background:#1558b0;
+
+}
+
+.pagination{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-top:20px;
+
+}
+
+.pagination button{
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#1a73e8;
+
+    color:#fff;
+
+    cursor:pointer;
+
+}
+
+.pagination button:disabled{
+
+    background:#aac5f8;
+
+    cursor:not-allowed;
+
+}
+
+#pageInfo{
+
+    color:#333;
+
+    font-weight:600;
 
 }
 

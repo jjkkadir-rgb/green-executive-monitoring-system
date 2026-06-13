@@ -338,43 +338,75 @@ Export PNG
 </div>
 
 
-<div class="chart-card full">
+<div class="chart-card">
 
 <h2>
-🤖 AI Executive Analysis
+🤖 AI Executive Analysis V2
 </h2>
 
 <div class="ai-card">
 
-<h3>Executive Summary</h3>
+<h3>
+📋 Executive Summary
+</h3>
 
 <p id="executiveSummary"></p>
 
 <hr>
 
-<h3>Trend Analysis</h3>
+<h3>
+📈 Performance Indicator
+</h3>
+
+<p id="performanceIndicator"></p>
+
+<hr>
+
+<h3>
+📊 Trend Analysis
+</h3>
 
 <p id="trendAnalysis"></p>
 
 <hr>
 
-<h3>Recommendations</h3>
+<h3>
+💰 Cost Efficiency
+</h3>
 
-<p id="recommendation"></p>
+<p id="costEfficiency"></p>
 
 <hr>
 
-<h3>Forecast</h3>
+<h3>
+🌍 Carbon Estimation
+</h3>
+
+<p id="carbonEstimate"></p>
+
+<hr>
+
+<h3>
+🔮 Forecast
+</h3>
 
 <p id="forecast"></p>
 
-</div>
+<hr>
+
+<h3>
+✅ Recommendations
+</h3>
+
+<p id="recommendation"></p>
 
 </div>
 
+</div>
 
 
-<div class="table-container full">
+
+<div class="table-container">
 
 <h2>
 📋 Energy Consumption Records
@@ -385,7 +417,23 @@ Export PNG
 <input
 type="text"
 id="searchInput"
-placeholder="Search month...">
+placeholder="Search records...">
+
+<select id="rowsPerPage">
+
+<option value="5">5 Rows</option>
+
+<option value="10" selected>10 Rows</option>
+
+<option value="20">20 Rows</option>
+
+</select>
+
+<button id="addBtn">
+
+➕ Add Record
+
+</button>
 
 <br><br>
 
@@ -414,6 +462,30 @@ placeholder="Search month...">
 </tbody>
 
 </table>
+
+<br>
+
+<div class="pagination">
+
+<button id="prevBtn">
+
+Previous
+
+</button>
+
+<span id="pageInfo">
+
+Page 1
+
+</span>
+
+<button id="nextBtn">
+
+Next
+
+</button>
+
+</div>
 
 </div>
 

@@ -15,7 +15,8 @@ const months=[
 "Sep25",
 "Jan26",
 "Feb26",
-"Mar26"
+"Apr26",
+"May26"
 ];
 
 const fullMonths=[
@@ -30,7 +31,8 @@ const fullMonths=[
 "Sep 2025",
 "Jan 2026",
 "Feb 2026",
-"Mar 2026"
+"Apr 2026",
+"May 2026"
 ];
 
 // Consumption Data (kWh)
@@ -45,7 +47,9 @@ const kwh=[
 299140,
 226520,
 194320,
-206930
+206930,
+221290,
+208910
 ];
 
 // Cost Data (RM)
@@ -60,7 +64,9 @@ const cost=[
 169295,
 125260,
 125070,
-133709
+133709,
+161181.85,
+134579.45
 ];
 
 // ==========================================
@@ -245,6 +251,11 @@ backgroundColor:"#ea4335"
 
 });
 
+const movingAverage = kwh.map((_, index, array) => {
+  const window = array.slice(Math.max(0, index - 2), index + 1);
+  return Math.round(window.reduce((sum, value) => sum + value, 0) / window.length);
+});
+
 new Chart(
 
 document.getElementById(
@@ -263,21 +274,7 @@ datasets:[{
 
 label:"Moving Average",
 
-data:[
-
-220000,
-222000,
-225000,
-228000,
-230000,
-226000,
-224000,
-229000,
-227000,
-223000,
-221000
-
-],
+data:movingAverage,
 
 borderColor:"#8e24aa",
 
@@ -290,6 +287,8 @@ tension:.4
 }
 
 });
+
+const efficiencySeries = cost.map((value, index) => Number((value / kwh[index]).toFixed(2)));
 
 new Chart(
 
@@ -309,21 +308,7 @@ datasets:[{
 
 label:"RM/kWh",
 
-data:[
-
-0.60,
-0.61,
-0.60,
-0.59,
-0.59,
-0.60,
-0.62,
-0.57,
-0.55,
-0.64,
-0.65
-
-],
+data:efficiencySeries,
 
 borderColor:"#34a853",
 
@@ -501,7 +486,7 @@ options:{
 
 });
 // ==========================================
-// AI EXECUTIVE PANEL
+// AI EXECUTIVE PANEL V2
 // ==========================================
 
 document.getElementById(
@@ -509,15 +494,33 @@ document.getElementById(
 ).innerHTML=
 
 `
-Total electricity consumption exceeded
-2.71 million kWh with an estimated cost
-of RM1.63 million.
+Total electricity consumption reached
+2.71 million kWh with an estimated
+annual cost of RM1.63 million.
 
 August 2025 recorded the highest
-consumption while June 2025 showed
-the lowest demand.
+consumption while June 2025 had the
+lowest demand.
 `;
 
+
+document.getElementById(
+"performanceIndicator"
+).innerHTML=
+
+`
+Energy Performance Index:
+
+GOOD
+
+Overall system efficiency:
+
+80 / 100
+
+Status:
+
+STABLE
+`;
 
 
 document.getElementById(
@@ -525,31 +528,43 @@ document.getElementById(
 ).innerHTML=
 
 `
-Overall electricity usage remained
-relatively stable.
+Electricity demand remained relatively
+stable throughout the year.
 
-Peak demand occurred during the
-third quarter due to increased
-campus activities.
+Peak consumption occurred during
+August due to increased campus
+activities.
 `;
-
 
 
 document.getElementById(
-"recommendation"
+"costEfficiency"
 ).innerHTML=
 
 `
-• Optimize air-conditioning schedules.
+Average electricity cost:
 
-• Promote energy-saving campaigns.
+RM0.60 per kWh
 
-• Upgrade lighting systems to LED.
+Overall cost efficiency:
 
-• Consider solar integration
-in Version 2X0.
+GOOD
 `;
 
+
+document.getElementById(
+"carbonEstimate"
+).innerHTML=
+
+`
+Estimated annual carbon emissions:
+
+1,950 tCO₂e
+
+Carbon intensity:
+
+MODERATE
+`;
 
 
 document.getElementById(
@@ -557,11 +572,30 @@ document.getElementById(
 ).innerHTML=
 
 `
-Projected monthly consumption is
-approximately 220,000 kWh.
+Projected monthly demand:
 
-Expected monthly expenditure is
-around RM130,000.
+220,000 kWh
+
+Expected expenditure:
+
+RM130,000/month
+`;
+
+
+document.getElementById(
+"recommendation"
+).innerHTML=
+
+`
+• Optimize HVAC schedules.
+
+• Continue LED retrofit programs.
+
+• Improve equipment efficiency.
+
+• Explore solar energy integration.
+
+• Strengthen energy awareness campaigns.
 `;
 
 // ==========================================
@@ -634,6 +668,18 @@ cost:125070
 month:"Feb 2026",
 kwh:206930,
 cost:133709
+},
+
+{
+month:"Apr 2026",
+kwh:221290,
+cost:161181.85
+},
+
+{
+month:"May 2026",
+kwh:208910,
+cost:134579.45
 }
 
 ];
