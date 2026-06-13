@@ -338,6 +338,48 @@ fill:false
 new Chart(
 
 document.getElementById(
+"performanceChart"
+),
+
+{
+
+type:"radar",
+
+data:{
+
+labels:[
+
+"Efficiency",
+"Cost",
+"Demand",
+"Reliability",
+"Sustainability"
+
+],
+
+datasets:[{
+
+label:"2025 Index",
+
+data:[
+
+85,
+80,
+90,
+88,
+75
+
+]
+
+}]
+
+}
+
+});
+
+new Chart(
+
+document.getElementById(
 "quarterChart"
 ),
 
