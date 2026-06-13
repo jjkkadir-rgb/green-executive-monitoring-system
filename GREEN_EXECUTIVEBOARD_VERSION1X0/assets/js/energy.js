@@ -253,33 +253,35 @@ type:"bar",
 
 data:{
 
-labels:[
-
-"2025",
-"2026"
-
-],
+labels:fullMonths,
 
 datasets:[{
 
-label:"Consumption",
+label:"Consumption (kWh)",
 
-data:[
+data:kwh,
 
-1861640,
-401250
+backgroundColor:"#1a73e8"
 
-],
+},
 
-backgroundColor:[
+{
 
-"#1a73e8",
-"#34a853"
+label:"Cost (RM)",
+
+data:cost,
+
+backgroundColor:"#34a853"
+
+}
 
 ]
 
-}]
-
+},
+options:{
+  responsive:true,
+  plugins:{legend:{display:true}},
+  scales:{y:{beginAtZero:true}}
 }
 
 });
