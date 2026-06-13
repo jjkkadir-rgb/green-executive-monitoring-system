@@ -684,20 +684,70 @@ cost:134579.45
 
 ];
 
-function loadTable(){
+// ==========================================
+// TABLE V2
+// ==========================================
 
-let tableBody=
+let currentPage = 1;
+let rowsPerPage = 10;
+
+function loadTable() {
+
+let tableBody =
 document.querySelector(
 "#energyTable tbody"
 );
 
-tableBody.innerHTML="";
+tableBody.innerHTML = "";
 
-energyData.forEach(
+let keyword =
+
+document
+.getElementById(
+"searchInput"
+)
+.value
+.toLowerCase();
+
+
+let filteredData =
+
+energyData.filter(row =>
+
+row.month
+.toLowerCase()
+.includes(keyword)
+
+);
+
+
+let start =
+
+(currentPage-1)
+*
+rowsPerPage;
+
+
+let end =
+
+start + rowsPerPage;
+
+
+let pageData =
+
+filteredData.slice(
+start,
+end
+);
+
+
+pageData.forEach(
 
 (row,index)=>{
 
-tableBody.innerHTML+=`
+tableBody.innerHTML +=
+
+`
 
 <tr>
 
@@ -708,14 +758,26 @@ tableBody.innerHTML+=`
 <td>${row.cost.toLocaleString()}</td>
 
 <td>
-${(row.cost/row.kwh).toFixed(3)}
+
+${(row.cost/row.kwh).toFixed(2)}
+
 </td>
 
 <td>
 
-<button>Edit</button>
+<button
+onclick="editRow(${index})">
 
-<button>Delete</button>
+Edit
+
+</button>
+
+<button
+onclick="deleteRow(${index})">
+
+Delete
+
+</button>
 
 </td>
 
@@ -724,6 +786,17 @@ ${(row.cost/row.kwh).toFixed(3)}
 `;
 
 });
+
+
+document
+.getElementById(
+"pageInfo"
+)
+.innerHTML=
+
+`
+Page ${currentPage}
+`;
 
 }
 
@@ -739,38 +812,117 @@ document
 
 "keyup",
 
-function(){
+()=>{
 
-let keyword=
-this.value.toLowerCase();
+currentPage = 1;
 
-let rows=
-document.querySelectorAll(
-"#energyTable tbody tr"
-);
-
-rows.forEach(row=>{
-
-let text=
-row.innerText.toLowerCase();
-
-row.style.display=
-
-text.includes(keyword)
-
-?
-
-""
-
-:
-
-"none";
+loadTable();
 
 });
+
+function deleteRow(index){
+
+if(
+
+confirm(
+"Delete record?"
+)
+
+){
+
+energyData.splice(
+index,
+1
+);
+
+loadTable();
+
+}
+
+}
+
+function editRow(index){
+
+alert(
+
+"Edit function V2 coming next."
+
+);
+
+}
+
+document
+
+.getElementById(
+"rowsPerPage"
+)
+
+.addEventListener(
+
+"change",
+
+function(){
+
+rowsPerPage =
+
+parseInt(
+this.value
+);
+
+currentPage = 1;
+
+loadTable();
 
 });
 
 document
+
+.getElementById(
+"prevBtn"
+)
+
+.addEventListener(
+
+"click",
+
+()=>{
+
+if(
+
+currentPage > 1
+
+){
+
+currentPage--;
+
+loadTable();
+
+}
+
+});
+
+
+document
+
+.getElementById(
+"nextBtn"
+)
+
+.addEventListener(
+
+"click",
+
+()=>{
+
+currentPage++;
+
+loadTable();
+
+});
+
+
+document
+
 .getElementById(
 "excelBtn"
 )
@@ -812,6 +964,8 @@ workbook,
 );
 
 });
+
+loadTable();
 
 document
 .getElementById(
