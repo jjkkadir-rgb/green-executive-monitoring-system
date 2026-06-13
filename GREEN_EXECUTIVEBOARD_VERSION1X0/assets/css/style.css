@@ -1,5 +1,5 @@
 /* ==========================================
-   GREEN_EXECUTIVEBOARD_VERSION1X0
+   GREEN EXECUTIVE MONITORING SYSTEM
    Global Style Sheet
 ========================================== */
 
@@ -72,14 +72,20 @@ body{
 
 }
 
-.sidebar h2{
+.sidebar .sidebar-logo{
+    display:flex;
+    justify-content:center;
+    margin-bottom:24px;
+}
 
-    text-align:center;
-
-    color:var(--primary);
-
-    margin-bottom:30px;
-
+.sidebar .sidebar-logo img{
+    width:220px;
+    max-width:100%;
+    height:auto;
+    display:block;
+    border-radius:20px;
+    border:2px solid rgba(26,115,232,0.16);
+    box-shadow:0 18px 40px rgba(26,115,232,0.12);
 }
 
 .sidebar ul{
@@ -262,6 +268,8 @@ th{
 
     padding:15px;
 
+    text-align:left;
+
 }
 
 td{
@@ -278,9 +286,49 @@ tr:hover{
 
 }
 
-/* =====================
-   Buttons
-===================== */
+.section-header{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:24px;
+}
+
+.section-header.compact{
+    margin-bottom:18px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+}
+
+.table-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    width:100%;
+    align-items:center;
+}
+
+.table-actions input,
+.table-actions select{
+    flex:1 1 240px;
+}
+
+.action-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.export-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:12px;
+}
 
 button{
 
@@ -292,17 +340,34 @@ button{
 
     padding:12px 20px;
 
-    border-radius:10px;
+    border-radius:12px;
 
     cursor:pointer;
 
-    transition:.3s;
+    transition:transform .18s ease, box-shadow .18s ease, opacity .18s ease;
 
 }
 
 button:hover{
 
-    opacity:.9;
+    transform:translateY(-1px);
 
+    box-shadow:0 12px 28px rgba(26,115,232,0.18);
+
+}
+
+button.btn-secondary{
+    background:#ffffff;
+    color:var(--dark);
+    border:1px solid rgba(26,115,232,0.18);
+}
+
+button.btn-secondary:hover{
+    background:#f5f7fa;
+}
+
+button.btn-primary{
+    background:var(--primary);
+    color:#ffffff;
 }
 

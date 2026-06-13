@@ -4,7 +4,7 @@ document
   )
   .innerHTML=
 `
-GREEN_EXECUTIVEBOARD_VERSION1X0
+GREEN EXECUTIVE MONITORING SYSTEM
 recorded total utility expenditure
 exceeding RM2.09 million.
 

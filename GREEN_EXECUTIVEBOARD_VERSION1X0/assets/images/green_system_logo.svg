@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120" role="img" aria-labelledby="title desc">
+  <title>GREEN EXECUTIVE MONITORING SYSTEM</title>
+  <desc>Green Executive Monitoring System logo with leaf, water droplet, and chart elements.</desc>
+  <defs>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a73e8" />
+      <stop offset="100%" stop-color="#34a853" />
+    </linearGradient>
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34a853" />
+      <stop offset="100%" stop-color="#0b6623" />
+    </linearGradient>
+  </defs>
+  <rect width="360" height="120" rx="24" fill="#ffffff" stroke="#1a73e8" stroke-width="4" />
+  <g transform="translate(18 14)">
+    <path d="M36 28c0-15.5 13.5-28 30-28s30 12.5 30 28c0 19-30 42-30 42S36 47 36 28z" fill="url(#blueGradient)" />
+    <path d="M38 27c0-10 8-18 18-18s18 8 18 18-18 30-18 30S38 37 38 27z" fill="#ffffff" opacity="0.65" />
+    <path d="M23 32c0-8 7-18 16-18s16 10 16 18-16 26-16 26S23 40 23 32z" fill="url(#greenGradient)" />
+  </g>
+  <g transform="translate(102 30)">
+    <rect x="2" y="18" width="34" height="28" rx="5" fill="#1a73e8" />
+    <rect x="15" y="6" width="34" height="40" rx="5" fill="#34a853" />
+    <rect x="28" y="0" width="34" height="54" rx="5" fill="#0b6623" />
+    <polyline points="0,50 18,30 32,38 54,16" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <text x="190" y="38" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif" font-size="12" font-weight="600" fill="#0f2f54">POLITEKNIK MERSING</text>
+  <text x="190" y="56" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif" font-size="18" font-weight="700" fill="#0f2f54">GREEN EXECUTIVE</text>
+  <text x="190" y="82" font-family="Segoe UI, Tahoma, Geneva, Verdana, sans-serif" font-size="14" fill="#1a73e8">MONITORING SYSTEM</text>
+</svg>
