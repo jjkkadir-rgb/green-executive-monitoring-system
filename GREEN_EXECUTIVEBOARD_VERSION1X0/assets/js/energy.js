@@ -841,17 +841,13 @@ function hideViewerAddControls() {
     const energyAddSection = document.getElementById("energyAddSection");
     const energyAddBtn = document.getElementById("energyAddBtn");
     if (energyAddSection) {
-      energyAddSection.style.display = "none";
+      energyAddSection.remove();
     }
     if (energyAddBtn) {
-      energyAddBtn.style.display = "none";
+      energyAddBtn.remove();
     }
     const addRecordButtons = document.querySelectorAll("button[onclick='addRecord()'], button[onclick=\"addRecord()\"]");
-    addRecordButtons.forEach(btn => {
-      if (!btn.closest("#energyAddSection")) {
-        btn.style.display = "none";
-      }
-    });
+    addRecordButtons.forEach(btn => btn.remove());
   }
 }
 

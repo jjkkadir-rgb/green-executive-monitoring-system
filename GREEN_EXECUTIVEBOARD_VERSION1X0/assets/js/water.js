@@ -779,17 +779,13 @@ function hideViewerAddControls() {
     const waterAddSection = document.getElementById("waterAddSection");
     const waterAddBtn = document.getElementById("waterAddBtn");
     if (waterAddSection) {
-      waterAddSection.style.display = "none";
+      waterAddSection.remove();
     }
     if (waterAddBtn) {
-      waterAddBtn.style.display = "none";
+      waterAddBtn.remove();
     }
     const addRecordButtons = document.querySelectorAll("button[onclick='addRecord()'], button[onclick=\"addRecord()\"]");
-    addRecordButtons.forEach(btn => {
-      if (!btn.closest("#waterAddSection")) {
-        btn.style.display = "none";
-      }
-    });
+    addRecordButtons.forEach(btn => btn.remove());
   }
 }
 
