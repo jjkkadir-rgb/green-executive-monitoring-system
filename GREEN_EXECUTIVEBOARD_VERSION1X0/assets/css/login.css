@@ -64,3 +64,23 @@ button:hover{
         padding:14px;
     }
 }
+
+/* Login container variant used at repo root */
+.login-container{
+    background:white;
+    padding:40px;
+    width:100%;
+    max-width:420px;
+    border-radius:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+    text-align:center;
+    margin:0 auto;
+}
+
+.login-logo{
+    display:block;
+    max-width:320px;
+    width:85%;
+    height:auto;
+    margin:0 auto 18px;
+}
