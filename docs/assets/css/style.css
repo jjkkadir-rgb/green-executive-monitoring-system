@@ -440,3 +440,78 @@ button.btn-primary{
     min-width:600px;
 }
 
+/* Hamburger Menu Button */
+.hamburger-btn{
+    display:none;
+    flex-direction:column;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:0;
+    gap:6px;
+    margin-bottom:16px;
+}
+
+.hamburger-btn span{
+    width:28px;
+    height:3px;
+    background:var(--dark);
+    border-radius:2px;
+    transition:all 0.3s ease;
+}
+
+.hamburger-btn.active span:nth-child(1){
+    transform:rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger-btn.active span:nth-child(2){
+    opacity:0;
+}
+
+.hamburger-btn.active span:nth-child(3){
+    transform:rotate(-45deg) translate(8px, -8px);
+}
+
+/* Mobile Menu Overlay */
+.menu-overlay{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.3);
+    z-index:99;
+}
+
+.menu-overlay.active{
+    display:block;
+}
+
+@media screen and (max-width: 980px) {
+    .hamburger-btn{
+        display:flex;
+    }
+
+    .sidebar{
+        position:fixed;
+        top:0;
+        left:0;
+        height:100vh;
+        z-index:100;
+        transform:translateX(-100%);
+        transition:transform 0.3s ease;
+        overflow-y:auto;
+        width:240px;
+    }
+
+    .sidebar.active{
+        transform:translateX(0);
+    }
+
+    .sidebar ul li{
+        flex:1 1 100%;
+    }
+}
+
+
