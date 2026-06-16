@@ -1291,7 +1291,7 @@ energy2024
 
 ).toFixed(1);
 
-new Chart(
+/*new Chart(
 
 document.getElementById(
 "periodComparisonChart"
@@ -1338,5 +1338,5 @@ responsive:true
 
 }
 
-});
+});  */
 
