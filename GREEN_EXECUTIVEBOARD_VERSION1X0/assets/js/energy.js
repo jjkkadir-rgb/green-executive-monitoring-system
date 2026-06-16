@@ -1234,3 +1234,109 @@ document.getElementById(
 
 `;
 
+// ==========================================
+// PERIOD COMPARISON
+// ==========================================
+
+// Jan-Dec 2024
+
+const energy2024 =
+
+188650+
+234800+
+268120+
+222200+
+273790+
+190100+
+196980+
+271290+
+285090+
+291930+
+279990+
+214740;
+
+// Jan-Dec 2025
+
+const energy2025 =
+
+217050+
+225960+
+235870+
+266420+
+242200+
+168400+
+208080+
+299140+
+226520;
+
+// Percentage change
+
+const percentageChange =
+
+(
+
+(
+
+energy2025-energy2024
+
+)
+
+/
+
+energy2024
+
+*
+
+100
+
+).toFixed(1);
+
+new Chart(
+
+document.getElementById(
+"periodComparisonChart"
+),
+
+{
+
+type:"bar",
+
+data:{
+
+labels:[
+
+"2024",
+"2025"
+
+],
+
+datasets:[{
+
+label:"Energy Consumption (kWh)",
+
+data:[
+
+energy2024,
+energy2025
+
+],
+
+backgroundColor:[
+
+"#1a73e8",
+"#34a853"
+
+]
+
+}]
+
+},
+
+options:{
+
+responsive:true
+
+}
+
+});
+
