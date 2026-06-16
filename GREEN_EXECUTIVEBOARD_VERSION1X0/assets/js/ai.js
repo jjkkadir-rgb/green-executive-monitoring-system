@@ -81,3 +81,25 @@ document
 • Monitor carbon emissions regularly.
 `;
 
+document.getElementById(
+"periodSummary"
+).innerHTML=`
+
+2024 consumption:
+
+${energy2024.toLocaleString()} kWh
+
+2025 consumption:
+
+${energy2025.toLocaleString()} kWh
+
+Difference:
+
+${percentageChange}%
+
+Overall performance remains stable.
+
+Energy efficiency programs are
+showing positive results.
+
+`;
