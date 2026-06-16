@@ -233,6 +233,8 @@ document
       html2canvas(printable, { backgroundColor: "white", scale: 2 }).then(canvas => {
         const link = document.createElement("a");
         link.href = canvas.toDataURL("image/png");
+
+        
         link.download = "analytics_report.png";
         document.body.appendChild(link);
         link.click();
@@ -241,3 +243,56 @@ document
     }
   );
 
+new Chart(
+document.getElementById("periodChart"),
+{
+type:"bar",
+
+data:{
+labels:[
+"Energy",
+"Water"
+],
+
+datasets:[
+{
+label:"Apr2024-Apr2025",
+
+data:[
+2710000,
+76188
+],
+
+backgroundColor:"#1a73e8"
+},
+
+{
+label:"Apr2025-Apr2026",
+
+data:[
+2530000,
+72000
+],
+
+backgroundColor:"#34a853"
+}
+]
+}
+}
+);
+
+document.getElementById(
+"periodSummary"
+).innerHTML=
+`
+Energy consumption decreased by 6.6%.
+
+Water consumption decreased by 5.5%.
+
+The comparison indicates improved
+resource efficiency and supports
+ISO 14001 and ISO 50001 objectives.
+
+Overall sustainability performance
+is improving.
+`;
