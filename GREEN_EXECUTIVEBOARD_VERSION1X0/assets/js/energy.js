@@ -1240,7 +1240,7 @@ document.getElementById(
 
 // Jan-Dec 2024
 
-const energy2024 =
+/*const energy2024 =
 
 188650+
 234800+
