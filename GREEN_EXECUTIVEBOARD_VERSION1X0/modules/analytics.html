@@ -123,7 +123,99 @@ Utility Cost Distribution
 </div>
 
 <div class="chart-card">
+<div class="chart-card">
 
+<h2>
+📊 Period Comparison Analysis
+</h2>
+
+<div class="form-grid">
+
+<div>
+<label>Period A Start</label>
+<input type="date" id="periodAStart">
+</div>
+
+<div>
+<label>Period A End</label>
+<input type="date" id="periodAEnd">
+</div>
+
+<div>
+<label>Period B Start</label>
+<input type="date" id="periodBStart">
+</div>
+
+<div>
+<label>Period B End</label>
+<input type="date" id="periodBEnd">
+</div>
+
+</div>
+
+<br>
+
+<button id="compareBtn">
+Compare Periods
+</button>
+
+<br><br>
+
+<canvas id="periodChart"></canvas>
+
+<br>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Utility</th>
+<th>Period A</th>
+<th>Period B</th>
+<th>Difference</th>
+<th>Change (%)</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>⚡ Energy</td>
+<td id="energyA">2.71M kWh</td>
+<td id="energyB">2.53M kWh</td>
+<td>-180000</td>
+<td class="positive">-6.6%</td>
+</tr>
+
+<tr>
+<td>💧 Water</td>
+<td id="waterA">76188 m³</td>
+<td id="waterB">72000 m³</td>
+<td>-4188</td>
+<td class="positive">-5.5%</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<br>
+
+<div class="ai-card">
+
+<h3>
+AI Period Analysis
+</h3>
+
+<p id="periodSummary">
+
+</p>
+
+</div>
+
+</div>
 <h2>
 🤖 AI Analytics Panel
 </h2>
