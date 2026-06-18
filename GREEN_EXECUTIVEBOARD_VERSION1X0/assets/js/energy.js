@@ -1537,3 +1537,29 @@ function initPeriodComparison() {
         }
     });
 }
+function updatePeriodSummary() {
+    const summaryEl = document.getElementById('periodSummary');
+    if (!summaryEl) return;
+    
+    // Calculate period averages
+    const periods = ['Jan-Mar', 'Apr-Jun', 'Jul-Sep', 'Oct-Dec'];
+    const consumption = [185000, 210000, 245000, 195000];
+    const costs = [111000, 126000, 147000, 117000];
+    
+    const totalConsumption = consumption.reduce((a, b) => a + b, 0);
+    const avgConsumption = totalConsumption / consumption.length;
+    const maxPeriod = periods[consumption.indexOf(Math.max(...consumption))];
+    const minPeriod = periods[consumption.indexOf(Math.min(...consumption))];
+    
+    summaryEl.innerHTML = `
+        <strong>📊 Summary:</strong><br>
+        • Total Consumption: <strong>${totalConsumption.toLocaleString()} kWh</strong><br>
+        • Average per Quarter: <strong>${avgConsumption.toLocaleString()} kWh</strong><br>
+        • Highest Quarter: <strong>${maxPeriod}</strong> (${Math.max(...consumption).toLocaleString()} kWh)<br>
+        • Lowest Quarter: <strong>${minPeriod}</strong> (${Math.min(...consumption).toLocaleString()} kWh)<br>
+        • Total Cost: <strong>RM ${costs.reduce((a, b) => a + b, 0).toLocaleString()}</strong>
+    `;
+}
+
+// Add this to DOMContentLoaded as well
+document.addEventListener('DOMContentLoaded', updatePeriodSummary);
