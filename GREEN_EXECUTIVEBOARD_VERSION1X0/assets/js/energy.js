@@ -1479,3 +1479,61 @@ document
 "none";
 
 }
+// Period Comparison Analysis
+function initPeriodComparison() {
+    const ctx = document.getElementById('periodComparisonChart');
+    if (!ctx) return;
+    
+    // Sample data - replace with your actual data
+    const periods = ['Jan-Mar', 'Apr-Jun', 'Jul-Sep', 'Oct-Dec'];
+    const consumption = [185000, 210000, 245000, 195000];
+    const costs = [111000, 126000, 147000, 117000];
+    
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: periods,
+            datasets: [
+                {
+                    label: 'Consumption (kWh)',
+                    data: consumption,
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    borderWidth: 2,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Cost (RM)',
+                    data: costs,
+                    backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    borderWidth: 2,
+                    yAxisID: 'y1'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                title: {
+                    display: true,
+                    text: 'Quarterly Consumption vs Cost'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    position: 'left',
+                    title: { display: true, text: 'Consumption (kWh)' }
+                },
+                y1: {
+                    beginAtZero: true,
+                    position: 'right',
+                    grid: { drawOnChartArea: false },
+                    title: { display: true, text: 'Cost (RM)' }
+                }
+            }
+        }
+    });
+}
