@@ -3,12 +3,12 @@
 // ==========================================
 
 // ==========================================
-// ROLE ACCESS
+// ROLE ACCESS (ONLY DECLARED ONCE)
 // ==========================================
 const role = localStorage.getItem("role");
 
 // ==========================================
-// ENERGY TABLE DATA (UPDATED Jan 2025 - Mar 2026)
+// ENERGY TABLE DATA (Jan 2025 - Mar 2026)
 // ==========================================
 let energyData = [
     { month: "Jan 2025", kwh: 214740, cost: 126420.75 },
@@ -25,6 +25,7 @@ let energyData = [
     { month: "Mar 2026", kwh: 206930, cost: 133708.50 }
 ];
 
+// ... rest of your code ...
 // ==========================================
 // MONTHLY LABELS (DERIVED FROM energyData)
 // ==========================================
