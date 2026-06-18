@@ -3,7 +3,7 @@
 // ==========================================
 
 // ==========================================
-// ROLE ACCESS (DECLARED ONCE - KEEP AT TOP)
+// ROLE ACCESS (ONLY DECLARED ONCE - KEEP THIS)
 // ==========================================
 const role = localStorage.getItem("role");
 
@@ -34,87 +34,70 @@ const months = energyData.map(record => {
 });
 
 const fullMonths = energyData.map(record => record.month);
-
-// Consumption Data (kWh)
 const kwh = energyData.map(record => record.kwh);
-
-// Cost Data (RM)
 const cost = energyData.map(record => record.cost);
 
 // ==========================================
 // MONTHLY CONSUMPTION TREND
 // ==========================================
-new Chart(
-    document.getElementById("monthlyChart"),
-    {
-        type: 'line',
-        data: {
-            labels: months,
-            datasets: [{
-                label: 'Consumption (kWh)',
-                data: kwh,
-                borderColor: '#1a73e8',
-                backgroundColor: 'rgba(26,115,232,.2)',
-                fill: true,
-                tension: .4
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true
-                }
-            }
-        }
+new Chart(document.getElementById("monthlyChart"), {
+    type: 'line',
+    data: {
+        labels: months,
+        datasets: [{
+            label: 'Consumption (kWh)',
+            data: kwh,
+            borderColor: '#1a73e8',
+            backgroundColor: 'rgba(26,115,232,.2)',
+            fill: true,
+            tension: .4
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: true } }
     }
-);
+});
 
 // ==========================================
 // MONTHLY COST TREND
 // ==========================================
-new Chart(
-    document.getElementById("costChart"),
-    {
-        type: "line",
-        data: {
-            labels: months,
-            datasets: [{
-                label: "Cost (RM)",
-                data: cost,
-                borderColor: "#34a853",
-                backgroundColor: "rgba(52,168,83,.2)",
-                fill: true,
-                tension: .4
-            }]
-        }
+new Chart(document.getElementById("costChart"), {
+    type: "line",
+    data: {
+        labels: months,
+        datasets: [{
+            label: "Cost (RM)",
+            data: cost,
+            borderColor: "#34a853",
+            backgroundColor: "rgba(52,168,83,.2)",
+            fill: true,
+            tension: .4
+        }]
     }
-);
+});
 
 // ==========================================
 // CONSUMPTION VS COST
 // ==========================================
-new Chart(
-    document.getElementById("comparisonChart"),
-    {
-        type: "bar",
-        data: {
-            labels: months,
-            datasets: [
-                {
-                    label: "Consumption (kWh)",
-                    data: kwh,
-                    backgroundColor: "#1a73e8"
-                },
-                {
-                    label: "Cost (RM)",
-                    data: cost,
-                    backgroundColor: "#34a853"
-                }
-            ]
-        }
+new Chart(document.getElementById("comparisonChart"), {
+    type: "bar",
+    data: {
+        labels: months,
+        datasets: [
+            {
+                label: "Consumption (kWh)",
+                data: kwh,
+                backgroundColor: "#1a73e8"
+            },
+            {
+                label: "Cost (RM)",
+                data: cost,
+                backgroundColor: "#34a853"
+            }
+        ]
     }
-);
+});
 
 // ==========================================
 // TOP 5 HIGHEST MONTHS
@@ -160,23 +143,20 @@ const peakMonths = sortedByKwh.slice(0, 4).sort((a, b) => {
     return dateA - dateB;
 });
 
-new Chart(
-    document.getElementById("peakChart"),
-    {
-        type: "bar",
-        data: {
-            labels: peakMonths.map(r => {
-                const [m, y] = r.month.split(' ');
-                return m.slice(0, 3) + y.slice(2);
-            }),
-            datasets: [{
-                label: "Peak Demand (kWh)",
-                data: peakMonths.map(r => r.kwh),
-                backgroundColor: "#ea4335"
-            }]
-        }
+new Chart(document.getElementById("peakChart"), {
+    type: "bar",
+    data: {
+        labels: peakMonths.map(r => {
+            const [m, y] = r.month.split(' ');
+            return m.slice(0, 3) + y.slice(2);
+        }),
+        datasets: [{
+            label: "Peak Demand (kWh)",
+            data: peakMonths.map(r => r.kwh),
+            backgroundColor: "#ea4335"
+        }]
     }
-);
+});
 
 // ==========================================
 // MOVING AVERAGE TREND (3-month)
@@ -186,64 +166,51 @@ const movingAverage = kwh.map((_, index, array) => {
     return Math.round(window.reduce((sum, value) => sum + value, 0) / window.length);
 });
 
-new Chart(
-    document.getElementById("movingChart"),
-    {
-        type: "line",
-        data: {
-            labels: months,
-            datasets: [{
-                label: "3-Month Moving Average",
-                data: movingAverage,
-                borderColor: "#8e24aa",
-                fill: false,
-                tension: .4
-            }]
-        }
+new Chart(document.getElementById("movingChart"), {
+    type: "line",
+    data: {
+        labels: months,
+        datasets: [{
+            label: "3-Month Moving Average",
+            data: movingAverage,
+            borderColor: "#8e24aa",
+            fill: false,
+            tension: .4
+        }]
     }
-);
+});
 
 // ==========================================
 // MONTHLY COST EFFICIENCY
 // ==========================================
 const efficiencySeries = cost.map((value, index) => Number((value / kwh[index]).toFixed(2)));
 
-new Chart(
-    document.getElementById("efficiencyChart"),
-    {
-        type: "line",
-        data: {
-            labels: months,
-            datasets: [{
-                label: "RM/kWh",
-                data: efficiencySeries,
-                borderColor: "#34a853",
-                fill: false
-            }]
-        }
+new Chart(document.getElementById("efficiencyChart"), {
+    type: "line",
+    data: {
+        labels: months,
+        datasets: [{
+            label: "RM/kWh",
+            data: efficiencySeries,
+            borderColor: "#34a853",
+            fill: false
+        }]
     }
-);
+});
 
 // ==========================================
 // ANNUAL PERFORMANCE INDEX
 // ==========================================
-new Chart(
-    document.getElementById("performanceChart"),
-    {
-        type: "radar",
-        data: {
-            labels: [
-                "Efficiency", "Cost", "Demand", "Reliability", "Sustainability"
-            ],
-            datasets: [{
-                label: "Performance Index",
-                data: [
-                    85, 80, 90, 88, 75
-                ]
-            }]
-        }
+new Chart(document.getElementById("performanceChart"), {
+    type: "radar",
+    data: {
+        labels: ["Efficiency", "Cost", "Demand", "Reliability", "Sustainability"],
+        datasets: [{
+            label: "Performance Index",
+            data: [85, 80, 90, 88, 75]
+        }]
     }
-);
+});
 
 // ==========================================
 // UTILITY PERFORMANCE SCORE
@@ -253,40 +220,30 @@ const avgKwh = Math.round(totalKwh / kwh.length);
 const maxKwh = Math.max(...kwh);
 const efficiencyScore = Math.round((avgKwh / maxKwh) * 100);
 
-new Chart(
-    document.getElementById("scoreChart"),
-    {
-        type: "doughnut",
-        data: {
-            labels: [
-                "Performance Score", "Remaining"
-            ],
-            datasets: [{
-                data: [
-                    efficiencyScore,
-                    100 - efficiencyScore
-                ],
-                backgroundColor: [
-                    "#34a853", "#eeeeee"
-                ]
-            }]
-        },
-        options: {
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            if (context.dataIndex === 0) {
-                                return `Score: ${context.raw}%`;
-                            }
-                            return `${context.raw}%`;
+new Chart(document.getElementById("scoreChart"), {
+    type: "doughnut",
+    data: {
+        labels: ["Performance Score", "Remaining"],
+        datasets: [{
+            data: [efficiencyScore, 100 - efficiencyScore],
+            backgroundColor: ["#34a853", "#eeeeee"]
+        }]
+    },
+    options: {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        if (context.dataIndex === 0) {
+                            return `Score: ${context.raw}%`;
                         }
+                        return `${context.raw}%`;
                     }
                 }
             }
         }
     }
-);
+});
 
 // ==========================================
 // QUARTERLY ANALYSIS
@@ -317,39 +274,31 @@ energyData.forEach(record => {
 const quarterLabels = Object.keys(quarters).filter(q => quarters[q].count > 0);
 const quarterData = quarterLabels.map(q => Math.round(quarters[q].kwh / quarters[q].count));
 
-new Chart(
-    document.getElementById("quarterChart"),
-    {
-        type: "doughnut",
-        data: {
-            labels: quarterLabels,
-            datasets: [{
-                data: quarterData,
-                backgroundColor: [
-                    '#1a73e8', '#34a853', '#ea4335', '#fbbc04', '#8e24aa'
-                ]
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    position: 'right'
-                }
-            }
+new Chart(document.getElementById("quarterChart"), {
+    type: "doughnut",
+    data: {
+        labels: quarterLabels,
+        datasets: [{
+            data: quarterData,
+            backgroundColor: ['#1a73e8', '#34a853', '#ea4335', '#fbbc04', '#8e24aa']
+        }]
+    },
+    options: {
+        plugins: {
+            legend: { position: 'right' }
         }
     }
-);
+});
 
 // ==========================================
 // MONTHLY KWH AND COST COMPARISON
 // ==========================================
-new Chart(
-    document.getElementById("yearChart"),
-    {
-        type: "bar",
-        data: {
-            labels: fullMonths,
-            datasets: [{
+new Chart(document.getElementById("yearChart"), {
+    type: "bar",
+    data: {
+        labels: fullMonths,
+        datasets: [
+            {
                 label: "Consumption (kWh)",
                 data: kwh,
                 backgroundColor: "#1a73e8"
@@ -358,18 +307,18 @@ new Chart(
                 label: "Cost (RM)",
                 data: cost,
                 backgroundColor: "#34a853"
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: { legend: { display: true } },
-            scales: { y: { beginAtZero: true } }
-        }
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: true } },
+        scales: { y: { beginAtZero: true } }
     }
-);
+});
 
 // ==========================================
-// PERIOD COMPARISON ANALYSIS (APRIL-MARCH FINANCIAL YEAR)
+// PERIOD COMPARISON ANALYSIS (APRIL-MARCH)
 // ==========================================
 function initPeriodComparison() {
     const ctx = document.getElementById('periodComparisonChart');
@@ -378,7 +327,6 @@ function initPeriodComparison() {
         return;
     }
 
-    // Function to get financial year (April-March)
     function getFinancialYear(monthStr) {
         const [month, year] = monthStr.split(' ');
         const yearNum = parseInt(year);
@@ -388,17 +336,11 @@ function initPeriodComparison() {
         return `${yearNum}-${yearNum + 1}`;
     }
 
-    // Group data by financial year
     const financialYears = {};
     energyData.forEach(record => {
         const fy = getFinancialYear(record.month);
         if (!financialYears[fy]) {
-            financialYears[fy] = { 
-                consumption: 0, 
-                cost: 0, 
-                count: 0,
-                months: []
-            };
+            financialYears[fy] = { consumption: 0, cost: 0, count: 0, months: [] };
         }
         financialYears[fy].consumption += record.kwh;
         financialYears[fy].cost += record.cost;
@@ -467,7 +409,7 @@ function initPeriodComparison() {
 }
 
 // ==========================================
-// PERIOD SUMMARY (APRIL-MARCH FINANCIAL YEAR)
+// PERIOD SUMMARY (APRIL-MARCH)
 // ==========================================
 function updatePeriodSummary() {
     const summaryEl = document.getElementById('periodSummary');
@@ -477,7 +419,6 @@ function updatePeriodSummary() {
     const totalCost = energyData.reduce((sum, r) => sum + r.cost, 0);
     const avgConsumption = Math.round(totalConsumption / energyData.length);
     const avgCost = (totalCost / energyData.length).toFixed(2);
-
     const maxRecord = energyData.reduce((a, b) => a.kwh > b.kwh ? a : b);
     const minRecord = energyData.reduce((a, b) => a.kwh < b.kwh ? a : b);
 
@@ -534,7 +475,7 @@ function updatePeriodSummary() {
 }
 
 // ==========================================
-// AI EXECUTIVE PANEL V2 (UPDATED)
+// AI EXECUTIVE PANEL
 // ==========================================
 const totalKwhAI = kwh.reduce((a, b) => a + b, 0);
 const totalCostAI = cost.reduce((a, b) => a + b, 0);
@@ -546,12 +487,8 @@ const minKwhAI = Math.min(...kwh);
 const minMonth = fullMonths[kwh.indexOf(minKwhAI)];
 
 document.getElementById("executiveSummary").innerHTML = `
-    Total electricity consumption reached
-    ${totalKwhAI.toLocaleString()} kWh with an estimated
-    total cost of RM ${totalCostAI.toLocaleString()}.
-    ${maxMonth} recorded the highest
-    consumption (${maxKwhAI.toLocaleString()} kWh) while ${minMonth} had the
-    lowest demand (${minKwhAI.toLocaleString()} kWh).
+    Total electricity consumption reached ${totalKwhAI.toLocaleString()} kWh with an estimated total cost of RM ${totalCostAI.toLocaleString()}.
+    ${maxMonth} recorded the highest consumption (${maxKwhAI.toLocaleString()} kWh) while ${minMonth} had the lowest demand (${minKwhAI.toLocaleString()} kWh).
 `;
 
 document.getElementById("performanceIndicator").innerHTML = `
@@ -561,9 +498,7 @@ document.getElementById("performanceIndicator").innerHTML = `
 `;
 
 document.getElementById("trendAnalysis").innerHTML = `
-    Electricity demand shows seasonal patterns,
-    with peaks in September (${maxKwhAI.toLocaleString()} kWh)
-    and lower demand in July (${minKwhAI.toLocaleString()} kWh).
+    Electricity demand shows seasonal patterns, with peaks in September (${maxKwhAI.toLocaleString()} kWh) and lower demand in July (${minKwhAI.toLocaleString()} kWh).
     The data covers ${energyData.length} months from Jan 2025 to Mar 2026.
 `;
 
@@ -603,13 +538,8 @@ function loadTable() {
     if (!tableBody) return;
     
     tableBody.innerHTML = "";
-
     let keyword = document.getElementById("searchInput").value.toLowerCase();
-
-    let filteredData = energyData.filter(row =>
-        row.month.toLowerCase().includes(keyword)
-    );
-
+    let filteredData = energyData.filter(row => row.month.toLowerCase().includes(keyword));
     let start = (currentPage - 1) * rowsPerPage;
     let end = start + rowsPerPage;
     let pageData = filteredData.slice(start, end);
@@ -618,24 +548,19 @@ function loadTable() {
         const globalIndex = energyData.indexOf(row);
         tableBody.innerHTML += `
             <tr>
-                <td>
-                    <input type="checkbox" class="rowCheck" value="${globalIndex}">
-                </td>
+                <td><input type="checkbox" class="rowCheck" value="${globalIndex}"></td>
                 <td>${row.month}</td>
                 <td>${row.kwh.toLocaleString()}</td>
                 <td>${row.cost.toLocaleString()}</td>
                 <td>${(row.cost / row.kwh).toFixed(3)}</td>
                 <td>
                     ${role === "viewer" ? "View Only" :
-                    `
-                        <button onclick="editRow(${globalIndex})">Edit</button>
-                        <button onclick="deleteRow(${globalIndex})">Delete</button>
-                    `}
+                    `<button onclick="editRow(${globalIndex})">Edit</button>
+                     <button onclick="deleteRow(${globalIndex})">Delete</button>`}
                 </td>
             </tr>
         `;
     });
-
     document.getElementById("pageInfo").innerHTML = `Page ${currentPage}`;
 }
 
@@ -646,21 +571,15 @@ function hideViewerAddControls() {
     if (role === "viewer") {
         const energyAddSection = document.getElementById("energyAddSection");
         const energyAddBtn = document.getElementById("energyAddBtn");
-        if (energyAddSection) {
-            energyAddSection.remove();
-        }
-        if (energyAddBtn) {
-            energyAddBtn.remove();
-        }
-        const addRecordButtons = document.querySelectorAll("button[onclick='addRecord()'], button[onclick=\"addRecord()\"]");
-        addRecordButtons.forEach(btn => btn.remove());
+        if (energyAddSection) energyAddSection.remove();
+        if (energyAddBtn) energyAddBtn.remove();
+        document.querySelectorAll("button[onclick='addRecord()'], button[onclick=\"addRecord()\"]").forEach(btn => btn.remove());
     }
 }
-
 hideViewerAddControls();
 
 // ==========================================
-// SEARCH FUNCTIONALITY
+// SEARCH
 // ==========================================
 const searchInput = document.getElementById("searchInput");
 if (searchInput) {
@@ -713,7 +632,6 @@ function updateDerivedData() {
     fullMonths.length = 0;
     kwh.length = 0;
     cost.length = 0;
-    
     energyData.forEach(record => {
         const [month, year] = record.month.split(' ');
         months.push(month.slice(0, 3) + year.slice(2));
@@ -734,17 +652,14 @@ function addRecord() {
     let month = document.getElementById("newMonth").value;
     let kwhVal = parseFloat(document.getElementById("newKwh").value);
     let costVal = parseFloat(document.getElementById("newCost").value);
-
     if (month === "" || isNaN(kwhVal) || isNaN(costVal)) {
         alert("Please complete all fields.");
         return;
     }
-
     energyData.push({ month, kwh: kwhVal, cost: costVal });
     updateDerivedData();
     loadTable();
     location.reload();
-
     document.getElementById("newMonth").value = "";
     document.getElementById("newKwh").value = "";
     document.getElementById("newCost").value = "";
@@ -805,7 +720,7 @@ if (rowsPerPageSelect) {
 }
 
 // ==========================================
-// PAGINATION BUTTONS
+// PAGINATION
 // ==========================================
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
@@ -883,13 +798,10 @@ if (pngBtn) {
 }
 
 // ==========================================
-// LOAD TABLE ON STARTUP
+// LOAD TABLE & INITIALIZE
 // ==========================================
 loadTable();
 
-// ==========================================
-// INITIALIZE PERIOD COMPARISON
-// ==========================================
 document.addEventListener('DOMContentLoaded', function() {
     initPeriodComparison();
     updatePeriodSummary();
