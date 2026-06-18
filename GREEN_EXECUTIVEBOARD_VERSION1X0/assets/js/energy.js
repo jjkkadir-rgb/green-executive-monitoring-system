@@ -8,9 +8,30 @@
 const role = localStorage.getItem("role");
 
 // ==========================================
-// ENERGY TABLE DATA (Jan 2025 - Mar 2026)
+// ENERGY TABLE DATA (COMPLETE: Jul 2023 - Mar 2026)
 // ==========================================
 let energyData = [
+    // 2023 Data
+    { month: "Jul 2023", kwh: 181350, cost: 108810.00 },
+    { month: "Aug 2023", kwh: 207910, cost: 124746.00 },
+    { month: "Sep 2023", kwh: 279980, cost: 167988.00 },
+    { month: "Oct 2023", kwh: 280150, cost: 168090.00 },
+    { month: "Nov 2023", kwh: 275050, cost: 165030.00 },
+    { month: "Dec 2023", kwh: 241130, cost: 144678.00 },
+    // 2024 Data
+    { month: "Jan 2024", kwh: 188650, cost: 113190.00 },
+    { month: "Feb 2024", kwh: 234800, cost: 140880.00 },
+    { month: "Mar 2024", kwh: 268120, cost: 160872.00 },
+    { month: "Apr 2024", kwh: 222200, cost: 133320.00 },
+    { month: "May 2024", kwh: 273790, cost: 164274.00 },
+    { month: "Jun 2024", kwh: 190100, cost: 114060.00 },
+    { month: "Jul 2024", kwh: 196980, cost: 118188.00 },
+    { month: "Aug 2024", kwh: 271290, cost: 162774.00 },
+    { month: "Sep 2024", kwh: 285090, cost: 171054.00 },
+    { month: "Oct 2024", kwh: 291930, cost: 175158.00 },
+    { month: "Nov 2024", kwh: 279990, cost: 167994.00 },
+    { month: "Dec 2024", kwh: 214740, cost: 128844.00 },
+    // 2025 Data
     { month: "Jan 2025", kwh: 214740, cost: 126420.75 },
     { month: "Feb 2025", kwh: 217050, cost: 130849.15 },
     { month: "Mar 2025", kwh: 225960, cost: 137876.55 },
@@ -20,6 +41,7 @@ let energyData = [
     { month: "Jul 2025", kwh: 168400, cost: 100956.80 },
     { month: "Aug 2025", kwh: 208080, cost: 128770.10 },
     { month: "Sep 2025", kwh: 299140, cost: 169295.20 },
+    // 2026 Data
     { month: "Jan 2026", kwh: 226520, cost: 125259.50 },
     { month: "Feb 2026", kwh: 194320, cost: 125070.20 },
     { month: "Mar 2026", kwh: 206930, cost: 133708.50 }
@@ -249,10 +271,15 @@ new Chart(document.getElementById("scoreChart"), {
 // QUARTERLY ANALYSIS
 // ==========================================
 const quarters = {
+    'Q3 2023': { kwh: 0, cost: 0, count: 0 },
+    'Q4 2023': { kwh: 0, cost: 0, count: 0 },
+    'Q1 2024': { kwh: 0, cost: 0, count: 0 },
+    'Q2 2024': { kwh: 0, cost: 0, count: 0 },
+    'Q3 2024': { kwh: 0, cost: 0, count: 0 },
+    'Q4 2024': { kwh: 0, cost: 0, count: 0 },
     'Q1 2025': { kwh: 0, cost: 0, count: 0 },
     'Q2 2025': { kwh: 0, cost: 0, count: 0 },
     'Q3 2025': { kwh: 0, cost: 0, count: 0 },
-    'Q4 2025': { kwh: 0, cost: 0, count: 0 },
     'Q1 2026': { kwh: 0, cost: 0, count: 0 }
 };
 
@@ -280,7 +307,11 @@ new Chart(document.getElementById("quarterChart"), {
         labels: quarterLabels,
         datasets: [{
             data: quarterData,
-            backgroundColor: ['#1a73e8', '#34a853', '#ea4335', '#fbbc04', '#8e24aa']
+            backgroundColor: [
+                '#1a73e8', '#34a853', '#ea4335', '#fbbc04',
+                '#4285f4', '#0f9d58', '#db4437', '#f4b400',
+                '#8e24aa', '#00acc1'
+            ]
         }]
     },
     options: {
@@ -318,7 +349,7 @@ new Chart(document.getElementById("yearChart"), {
 });
 
 // ==========================================
-// PERIOD COMPARISON ANALYSIS (APRIL-MARCH)
+// PERIOD COMPARISON ANALYSIS (APRIL-MARCH FINANCIAL YEAR)
 // ==========================================
 function initPeriodComparison() {
     const ctx = document.getElementById('periodComparisonChart');
@@ -409,7 +440,7 @@ function initPeriodComparison() {
 }
 
 // ==========================================
-// PERIOD SUMMARY (APRIL-MARCH)
+// PERIOD SUMMARY (APRIL-MARCH FINANCIAL YEAR)
 // ==========================================
 function updatePeriodSummary() {
     const summaryEl = document.getElementById('periodSummary');
@@ -475,7 +506,7 @@ function updatePeriodSummary() {
 }
 
 // ==========================================
-// AI EXECUTIVE PANEL
+// AI EXECUTIVE PANEL V2
 // ==========================================
 const totalKwhAI = kwh.reduce((a, b) => a + b, 0);
 const totalCostAI = cost.reduce((a, b) => a + b, 0);
@@ -487,19 +518,29 @@ const minKwhAI = Math.min(...kwh);
 const minMonth = fullMonths[kwh.indexOf(minKwhAI)];
 
 document.getElementById("executiveSummary").innerHTML = `
-    Total electricity consumption reached ${totalKwhAI.toLocaleString()} kWh with an estimated total cost of RM ${totalCostAI.toLocaleString()}.
-    ${maxMonth} recorded the highest consumption (${maxKwhAI.toLocaleString()} kWh) while ${minMonth} had the lowest demand (${minKwhAI.toLocaleString()} kWh).
+    Total electricity consumption reached ${totalKwhAI.toLocaleString()} kWh 
+    with an estimated total cost of RM ${totalCostAI.toLocaleString()}.
+    ${maxMonth} recorded the highest consumption (${maxKwhAI.toLocaleString()} kWh) 
+    while ${minMonth} had the lowest demand (${minKwhAI.toLocaleString()} kWh).
+    Data covers ${energyData.length} months from Jul 2023 to Mar 2026.
 `;
 
 document.getElementById("performanceIndicator").innerHTML = `
-    Energy Performance Index: ${avgKwhAI > 220000 ? 'GOOD' : 'FAIR'}
+    Energy Performance Index: ${avgKwhAI > 230000 ? 'GOOD' : 'FAIR'}
     Overall system efficiency: ${Math.round((minKwhAI / maxKwhAI) * 100)} / 100
-    Status: ${avgKwhAI > 200000 ? 'STABLE' : 'OPTIMIZING'}
+    Status: ${avgKwhAI > 220000 ? 'STABLE' : 'OPTIMIZING'}
 `;
 
 document.getElementById("trendAnalysis").innerHTML = `
-    Electricity demand shows seasonal patterns, with peaks in September (${maxKwhAI.toLocaleString()} kWh) and lower demand in July (${minKwhAI.toLocaleString()} kWh).
-    The data covers ${energyData.length} months from Jan 2025 to Mar 2026.
+    Electricity demand shows seasonal patterns,
+    with peaks occurring in Q3 (Jul-Sep) averaging ${Math.round(energyData.filter(r => {
+        const m = r.month.split(' ')[0];
+        return ['Jul','Aug','Sep'].includes(m);
+    }).reduce((s,r) => s + r.kwh, 0) / energyData.filter(r => {
+        const m = r.month.split(' ')[0];
+        return ['Jul','Aug','Sep'].includes(m);
+    }).length).toLocaleString()} kWh.
+    The highest peak was ${maxKwhAI.toLocaleString()} kWh in ${maxMonth}.
 `;
 
 document.getElementById("costEfficiency").innerHTML = `
@@ -509,22 +550,22 @@ document.getElementById("costEfficiency").innerHTML = `
 
 document.getElementById("carbonEstimate").innerHTML = `
     Estimated total carbon emissions: ${Math.round(totalKwhAI * 0.0007 * 1000).toLocaleString()} tCO₂e
-    Carbon intensity: ${totalKwhAI > 2500000 ? 'MODERATE' : 'LOW'}
+    Carbon intensity: ${totalKwhAI > 5000000 ? 'MODERATE' : 'LOW'}
 `;
 
 document.getElementById("forecast").innerHTML = `
     Projected monthly demand: ${avgKwhAI.toLocaleString()} kWh
     Expected expenditure: RM ${parseFloat(avgCostAI).toLocaleString()}/month
-    Based on ${energyData.length} months of historical data
+    Based on ${energyData.length} months of historical data (Jul 2023 - Mar 2026)
 `;
 
 document.getElementById("recommendation").innerHTML = `
-    • Optimize HVAC schedules (highest usage in Sep)
+    • Optimize HVAC schedules (highest usage in ${maxMonth.split(' ')[0]})
     • Continue LED retrofit programs
-    • Implement peak demand management
+    • Implement peak demand management during Q3 months
     • Consider solar energy integration
     • Strengthen energy awareness campaigns
-    • Monitor seasonal patterns (Jul-Sep peaks)
+    • Monitor seasonal patterns (Q3 peaks, Q1 dips)
 `;
 
 // ==========================================
