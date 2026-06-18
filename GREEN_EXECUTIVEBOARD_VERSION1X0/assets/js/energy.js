@@ -165,10 +165,8 @@ new Chart(
 // ==========================================
 // PEAK DEMAND ANALYSIS
 // ==========================================
-// Get the 4 highest months for peak demand
 const sortedByKwh = [...energyData].sort((a, b) => b.kwh - a.kwh);
 const peakMonths = sortedByKwh.slice(0, 4).sort((a, b) => {
-    // Sort chronologically for display
     const dateA = new Date(a.month);
     const dateB = new Date(b.month);
     return dateA - dateB;
@@ -390,7 +388,7 @@ new Chart(
 );
 
 // ==========================================
-// PERIOD COMPARISON ANALYSIS
+// PERIOD COMPARISON ANALYSIS (APRIL-MARCH FINANCIAL YEAR)
 // ==========================================
 function initPeriodComparison() {
     const ctx = document.getElementById('periodComparisonChart');
@@ -399,21 +397,48 @@ function initPeriodComparison() {
         return;
     }
 
-    // Group data by year
-    const yearlyData = {};
-    energyData.forEach(record => {
-        const year = record.month.split(' ')[1];
-        if (!yearlyData[year]) {
-            yearlyData[year] = { consumption: 0, cost: 0, count: 0 };
+    // Function to get financial year (April-March)
+    function getFinancialYear(monthStr) {
+        const [month, year] = monthStr.split(' ');
+        const yearNum = parseInt(year);
+        // If month is Jan-Mar, it belongs to the previous financial year
+        if (['Jan', 'Feb', 'Mar'].includes(month)) {
+            return `${yearNum - 1}-${yearNum}`;
         }
-        yearlyData[year].consumption += record.kwh;
-        yearlyData[year].cost += record.cost;
-        yearlyData[year].count += 1;
+        // If month is Apr-Dec, it belongs to current financial year
+        return `${yearNum}-${yearNum + 1}`;
+    }
+
+    // Group data by financial year
+    const financialYears = {};
+    energyData.forEach(record => {
+        const fy = getFinancialYear(record.month);
+        if (!financialYears[fy]) {
+            financialYears[fy] = { 
+                consumption: 0, 
+                cost: 0, 
+                count: 0,
+                months: []
+            };
+        }
+        financialYears[fy].consumption += record.kwh;
+        financialYears[fy].cost += record.cost;
+        financialYears[fy].count += 1;
+        financialYears[fy].months.push(record.month);
     });
 
-    const labels = Object.keys(yearlyData).sort();
-    const consumptionData = labels.map(y => Math.round(yearlyData[y].consumption / yearlyData[y].count));
-    const costData = labels.map(y => Math.round(yearlyData[y].cost / yearlyData[y].count));
+    // Sort financial years chronologically
+    const sortedFYs = Object.keys(financialYears).sort((a, b) => {
+        const [aStart] = a.split('-');
+        const [bStart] = b.split('-');
+        return parseInt(aStart) - parseInt(bStart);
+    });
+
+    const labels = sortedFYs.map(fy => `FY ${fy}`);
+    const consumptionData = sortedFYs.map(fy => Math.round(financialYears[fy].consumption / financialYears[fy].count));
+    const costData = sortedFYs.map(fy => Math.round(financialYears[fy].cost / financialYears[fy].count));
+    const totalConsumptionFY = sortedFYs.map(fy => financialYears[fy].consumption);
+    const totalCostFY = sortedFYs.map(fy => financialYears[fy].cost);
 
     new Chart(ctx, {
         type: 'bar',
@@ -444,7 +469,8 @@ function initPeriodComparison() {
                 legend: { position: 'top' },
                 title: {
                     display: true,
-                    text: 'Year-over-Year Comparison'
+                    text: 'Financial Year Comparison (April-March)',
+                    font: { size: 16 }
                 }
             },
             scales: {
@@ -465,7 +491,7 @@ function initPeriodComparison() {
 }
 
 // ==========================================
-// PERIOD SUMMARY
+// PERIOD SUMMARY (APRIL-MARCH FINANCIAL YEAR)
 // ==========================================
 function updatePeriodSummary() {
     const summaryEl = document.getElementById('periodSummary');
@@ -479,23 +505,45 @@ function updatePeriodSummary() {
     const maxRecord = energyData.reduce((a, b) => a.kwh > b.kwh ? a : b);
     const minRecord = energyData.reduce((a, b) => a.kwh < b.kwh ? a : b);
 
-    // Year-over-year comparison
-    const years = {};
+    // Financial year grouping (April-March)
+    function getFinancialYear(monthStr) {
+        const [month, year] = monthStr.split(' ');
+        const yearNum = parseInt(year);
+        if (['Jan', 'Feb', 'Mar'].includes(month)) {
+            return `${yearNum - 1}-${yearNum}`;
+        }
+        return `${yearNum}-${yearNum + 1}`;
+    }
+
+    const fyData = {};
     energyData.forEach(r => {
-        const year = r.month.split(' ')[1];
-        if (!years[year]) years[year] = { kwh: 0, cost: 0, count: 0 };
-        years[year].kwh += r.kwh;
-        years[year].cost += r.cost;
-        years[year].count += 1;
+        const fy = getFinancialYear(r.month);
+        if (!fyData[fy]) fyData[fy] = { kwh: 0, cost: 0, count: 0 };
+        fyData[fy].kwh += r.kwh;
+        fyData[fy].cost += r.cost;
+        fyData[fy].count += 1;
     });
-    
-    const yearLabels = Object.keys(years).sort();
-    const yearSummary = yearLabels.map(y => 
-        `${y}: ${Math.round(years[y].kwh / years[y].count).toLocaleString()} kWh avg`
+
+    const sortedFYs = Object.keys(fyData).sort((a, b) => {
+        const [aStart] = a.split('-');
+        const [bStart] = b.split('-');
+        return parseInt(aStart) - parseInt(bStart);
+    });
+
+    const fySummary = sortedFYs.map(fy => 
+        `FY ${fy}: ${Math.round(fyData[fy].kwh / fyData[fy].count).toLocaleString()} kWh avg (${fyData[fy].count} months)`
     ).join(' | ');
 
+    // Find highest and lowest financial year
+    let maxFY = sortedFYs[0];
+    let minFY = sortedFYs[0];
+    sortedFYs.forEach(fy => {
+        if (fyData[fy].kwh > fyData[maxFY].kwh) maxFY = fy;
+        if (fyData[fy].kwh < fyData[minFY].kwh) minFY = fy;
+    });
+
     summaryEl.innerHTML = `
-        <strong>📊 Executive Summary (${energyData.length} months):</strong><br>
+        <strong>📊 Financial Year Summary (April-March):</strong><br>
         • Total Consumption: <strong>${totalConsumption.toLocaleString()} kWh</strong><br>
         • Total Cost: <strong>RM ${totalCost.toLocaleString()}</strong><br>
         • Average Monthly: <strong>${avgConsumption.toLocaleString()} kWh</strong><br>
@@ -503,7 +551,11 @@ function updatePeriodSummary() {
         • Highest Month: <strong>${maxRecord.month}</strong> (${maxRecord.kwh.toLocaleString()} kWh)<br>
         • Lowest Month: <strong>${minRecord.month}</strong> (${minRecord.kwh.toLocaleString()} kWh)<br>
         • Cost Efficiency: <strong>RM ${(totalCost/totalConsumption).toFixed(3)}/kWh</strong><br>
-        • Yearly Average: <strong>${yearSummary}</strong>
+        <br>
+        <strong>📆 Financial Year Breakdown:</strong><br>
+        • Best FY: <strong>FY ${maxFY}</strong> (${fyData[maxFY].kwh.toLocaleString()} kWh total)<br>
+        • Lowest FY: <strong>FY ${minFY}</strong> (${fyData[minFY].kwh.toLocaleString()} kWh total)<br>
+        • ${fySummary}
     `;
 }
 
@@ -654,10 +706,9 @@ function deleteRow(index) {
     }
     if (confirm("Delete record?")) {
         energyData.splice(index, 1);
-        // Update derived arrays
         updateDerivedData();
         loadTable();
-        location.reload(); // Refresh charts
+        location.reload();
     }
 }
 
@@ -676,7 +727,7 @@ function editRow(index) {
         energyData[index].cost = parseFloat(newCost);
         updateDerivedData();
         loadTable();
-        location.reload(); // Refresh charts
+        location.reload();
     }
 }
 
@@ -684,7 +735,6 @@ function editRow(index) {
 // UPDATE DERIVED DATA
 // ==========================================
 function updateDerivedData() {
-    // Clear and rebuild arrays
     months.length = 0;
     fullMonths.length = 0;
     kwh.length = 0;
